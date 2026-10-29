@@ -34,7 +34,7 @@ button {
 
 .phone {
   width: min(390px, 94vw);
-  height: min(844px, calc(100dvh - 55px));
+  height: min(844px, calc(100dvh - 40px));
   min-height: 600px;
   padding: 8px;
   border-radius: 58px;
@@ -65,13 +65,19 @@ button {
 }
 
 .wallpaper {
+  background: #fdc1f7;
+}
+.wallpaper .gradient-1 {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(ellipse at 50% 60%, #230a77, #c84fe4 45%, transparent 75%);
+  filter: blur(30px);
+}
+.wallpaper .gradient-2 {
   position: absolute;
   inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(#0001, #0002),
-    url("https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=900&q=85")
-    center / cover;
+  background: linear-gradient(160deg, #8778d1 0%, transparent 45%, #400898 100%);
+  opacity: .8;
 }
 
 .status-bar {
@@ -136,7 +142,8 @@ button {
 .calendar-widget,
 .photo-widget {
   height: 145px;
-  border: 0;
+  /*border-left: 3px solid #fcfcfc;*/
+  padding-left: 7px;
   border-radius: 28px;
   overflow: hidden;
 }
