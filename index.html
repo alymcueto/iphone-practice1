@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Little iPhone</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="stage">
+    <div class="phone">
+      <div class="screen" id="screen">
+
+        <div class="wallpaper"></div>
+
+        <div class="status-bar">
+          <span id="statusTime">9:41</span>
+          <span class="island"></span>
+          <span class="status-icons">▮ ▮ ◕ ▰</span>
+        </div>
+
+        <!-- HOME SCREEN -->
+        <section class="view home active" id="homeView">
+
+          <div class="widgets">
+            <div class="calendar-widget">
+              <span class="weekday">WEDNESDAY</span>
+              <span class="big-date">28</span>
+              <p>▏ Pick up Chan</p>
+              <p>▏ Finish the assignment</p>
+            </div>
+
+            <button class="photo-widget" data-app="Photos">
+              <span>OCTOBER 4</span>
+            </button>
+          </div>
+
+          <div class="app-grid">
+            <button class="app" data-app="Instagram">
+              <span class="app-icon instagram">◎</span>
+              <span>Instagram</span>
+            </button>
+
+            <button class="app" data-app="Notes">
+              <span class="app-icon notes-icon">▤</span>
+              <span>Notes</span>
+            </button>
+
+            <button class="app" data-app="Photos">
+              <span class="app-icon photos-icon">🌈</span>
+              <span>Photos</span>
+            </button>
+
+            <button class="app" data-app="Calendar">
+              <span class="app-icon calendar-icon">
+                <small>WED</small><b>28</b>
+              </span>
+              <span>Calendar</span>
+            </button>
+
+            <button class="app" data-app="Clock">
+              <span class="app-icon clock-icon">◷</span>
+              <span>Clock</span>
+            </button>
+
+            <button class="app" data-app="Weather">
+              <span class="app-icon weather-icon">☁️</span>
+              <span>Weather</span>
+            </button>
+
+            <button class="app" data-app="Settings">
+              <span class="app-icon settings-icon">⚙</span>
+              <span>Settings</span>
+            </button>
+
+            <button class="app" data-app="Messages">
+              <span class="app-icon messages-icon">●</span>
+              <span>Messages</span>
+            </button>
+          </div>
+
+          <div class="dock">
+            <button class="dock-icon phone-icon" data-app="Phone">☎</button>
+            <button class="dock-icon message-icon" data-app="Messages">●</button>
+            <button class="dock-icon mail-icon" data-app="Messages">✉</button>
+            <button class="dock-icon safari-icon" data-app="Safari">➤</button>
+          </div>
+
+          <div class="home-indicator"></div>
+        </section>
+
+        <!-- MESSAGES LIST -->
+        <section class="view app-screen" id="messagesView">
+          <header class="app-header">
+            <button class="back-button" data-back="home">‹ Home</button>
+            <h2>Messages</h2>
+            <button id="composeButton" class="compose-button">✎</button>
+          </header>
+
+          <div class="search-bar">⌕ &nbsp; Search</div>
+
+          <div class="conversation-list" id="conversationList"></div>
+
+          <div class="home-indicator dark-indicator"></div>
+        </section>
+
+        <!-- INDIVIDUAL CHAT -->
+        <section class="view app-screen" id="chatView">
+          <header class="chat-header">
+            <button class="back-button" data-back="messages">‹ Messages</button>
+
+            <div class="contact-heading">
+              <div class="contact-avatar" id="contactAvatar">C</div>
+              <strong id="contactName">Chan</strong>
+              <small>iMessage</small>
+            </div>
+
+            <span class="video-icon">▣</span>
+          </header>
+
+          <div class="chat-date">Today</div>
+
+          <div class="chat-messages" id="chatMessages"></div>
+
+          <form class="message-form" id="messageForm">
+            <button type="button" class="plus-button">＋</button>
+            <input id="messageInput" placeholder="iMessage" autocomplete="off">
+            <button class="send-button" type="submit">↑</button>
+          </form>
+
+          <div class="home-indicator dark-indicator"></div>
+        </section>
+
+        <!-- OTHER DEMO APPS -->
+        <section class="view app-screen" id="otherView">
+          <header class="app-header">
+            <button class="back-button" data-back="home">‹ Home</button>
+            <h2 id="otherTitle">App</h2>
+            <span></span>
+          </header>
+          <div class="other-content" id="otherContent"></div>
+          <div class="home-indicator dark-indicator"></div>
+        </section>
+
+      </div>
+    </div>
+
+    <p class="desktop-note">Your interactive iPhone demo</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
