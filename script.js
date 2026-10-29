@@ -8,6 +8,20 @@ const views = {
   other: $("#otherView")
 };
 
+const phone = document.querySelector(".phone");
+
+function fitPhone() {
+  if (window.innerWidth <= 600) {      // real phones: your mobile CSS takes over
+    phone.style.zoom = 1;
+    return;
+  }
+  const scale = Math.min(1, (window.innerHeight - 60) / 844);
+  phone.style.zoom = scale;            // 60px leaves room for the caption
+}
+
+fitPhone();
+window.addEventListener("resize", fitPhone);
+
 const people = [
   {
     name: "Chan",
