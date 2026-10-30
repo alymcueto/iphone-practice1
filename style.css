@@ -1,4 +1,3 @@
-
 * {
   box-sizing: border-box;
 }
@@ -33,8 +32,8 @@ button {
 }
 
 .phone {
-  width: 390px;
-  height: 844px;
+  width: 380px;
+  height: 794px;
   min-height: 0;
   padding: 8px;
   border-radius: 58px;
@@ -65,19 +64,10 @@ button {
 }
 
 .wallpaper {
-  background: #fdc1f7;
-}
-.wallpaper .gradient-1 {
-  position: absolute;
-  inset: -20%;
-  background: radial-gradient(ellipse at 50% 60%, #230a77, #c84fe4 45%, transparent 75%);
-  filter: blur(30px);
-}
-.wallpaper .gradient-2 {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, #8778d1 0%, transparent 45%, #400898 100%);
-  opacity: .8;
+  z-index: -1;
+  background: url("images/wallpaper-1.png") center / cover;
 }
 
 .status-bar {
@@ -99,9 +89,9 @@ button {
   left: 50%;
   top: 0;
   transform: translateX(-50%);
-  height: 30px;
-  width: 125px;
-  border-radius: 25px;
+  height: 35px;
+  width: 120px;
+  border-radius: 20px;
   background: #000;
 }
 
@@ -177,15 +167,11 @@ button {
   white-space: nowrap;
 }
 
-.calendar-widget p::first-letter {
-  color: #b45ce0;
-}
-
 .photo-widget {
   position: relative;
   background:
     linear-gradient(transparent 55%, #0007),
-    url("https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=85")
+    url("images/wallpaper-1.png")
     center / cover;
 }
 
@@ -719,18 +705,35 @@ button {
 /* ---------- LOCK SCREEN ---------- */
 .lock-date { position: absolute; top: 112px; width: 100%; text-align: center; font-size: 18px; font-weight: 600; opacity: .85; }
 .lock-time { position: absolute; top: 136px; width: 100%; text-align: center; font-size: 92px; font-weight: 600; letter-spacing: -2px; line-height: 1; opacity: .85; }
+
 .notification {
-  position: absolute; left: 14px; right: 14px; bottom: 128px; padding: 12px;
-  border-radius: 24px; background: #6b6b70aa; backdrop-filter: blur(22px);
-  display: flex; align-items: center; gap: 10px; font-size: 14px;
+  position: absolute; left: 14px; right: 14px; bottom: 128px; padding: 11px 12px;
+  display: flex; align-items: center; gap: 11px; font-size: 14px;
+  color: #111;                                  /* dark text, since the card is light */
+  border-radius: 24px;
+  background: rgba(255, 255, 255, .35);         /* light and see-through so the blur shows */
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, .45);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, .12);
 }
-.n-icon { width: 36px; height: 36px; border-radius: 9px; background: #55c95c; display: grid; place-items: center; font-size: 18px; }
+.n-icon {
+  width: 38px; height: 38px; flex-shrink: 0; border-radius: 22.5%;
+  display: grid; place-items: center;
+  background: linear-gradient(#67e27f, #28b946);
+}
+.n-icon svg { display: block; }
 .n-text { flex: 1; display: flex; flex-direction: column; gap: 2px; }
-.n-text b { font-weight: 600; }
-.notification small { align-self: flex-start; opacity: .7; font-size: 12px; }
+.n-text b { font-size: 15px; font-weight: 600; }
+.n-text span { color: #2c2c2e; }
+.notification small { align-self: flex-start; color: #6b6b70; font-size: 12px; }
 .lock-buttons { position: absolute; left: 40px; right: 40px; bottom: 48px; display: flex; align-items: center; justify-content: space-between; }
-.round-btn { width: 50px; height: 50px; border-radius: 50%; background: #3a3a3ecc; backdrop-filter: blur(20px); display: grid; place-items: center; }
-.swipe-hint { font-size: 14px; font-weight: 600; }
+.round-btn {
+  width: 50px; height: 50px; border-radius: 50%; color: #fff;
+  background: rgba(40, 40, 44, .55);
+  -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+  display: grid; place-items: center;
+}.swipe-hint { font-size: 14px; font-weight: 600; }
 
 /* ---------- PASSCODE ---------- */
 #passcodeView { background: rgba(0,0,0,.4); backdrop-filter: blur(30px); }
@@ -751,3 +754,116 @@ button {
 .pc-actions button { border: 0; background: none; color: #fff; font-size: 16px; font-weight: 600; }
 .shake { animation: shake .4s; }
 @keyframes shake { 20%, 60% { transform: translateX(-10px); } 40%, 80% { transform: translateX(10px); } }
+
+/* ---------- iPHONE HOME SCREEN POLISH ---------- */
+.photo-widget { border: 0; padding: 0; }
+.weekday { font-size: 13px; }
+.calendar-widget p { border-left: 3px solid #b45ce0; padding-left: 6px; }
+.app-icon, .dock-icon { border-radius: 22.5%; }
+.app { font-size: 11px; font-weight: 500; }
+.notes-icon { padding-top: 16px; }
+.messages-icon, .phone-icon, .message-icon { background: linear-gradient(#6fdc78, #30b94b); }
+.mail-icon { background: linear-gradient(#5bb8ff, #1a6cf0); }
+.page-dots { position: absolute; bottom: 118px; left: 0; right: 0; display: flex; justify-content: center; gap: 8px; }
+.page-dots i { width: 7px; height: 7px; border-radius: 50%; background: #ffffff66; }
+.page-dots i.on { background: #fff; }
+
+/* ---------- KAKAOTALK ---------- */
+.screen[data-view="kakaoList"] .status-bar,
+.screen[data-view="kakaoChat"] .status-bar { color: #111; }
+.dock-icon { position: relative; }
+.badge { position: absolute; top: -8px; right: -8px; background: #f04f3f; color: #fff; font-size: 12px; font-weight: 700; border-radius: 10px; padding: 1px 6px; }
+.kakao-icon { background: #fae100; }
+
+.k-screen { background: #fff; color: #111; }
+.k-head { position: absolute; top: 54px; left: 0; right: 0; height: 48px; padding: 0 16px; display: flex; align-items: center; gap: 8px; }
+.k-head h2 { margin: 0; flex: 1; font-size: 22px; font-weight: 800; }
+.k-back { border: 0; background: none; color: #111; font-size: 28px; padding: 0; }
+.k-icons { letter-spacing: 12px; font-size: 18px; }
+.k-pills { position: absolute; top: 108px; left: 16px; display: flex; gap: 8px; }
+.k-pills span { padding: 8px 14px; border-radius: 18px; border: 1px solid #e2e2e2; font-size: 13px; font-weight: 600; }
+.k-pills .on { background: #111; color: #fff; border-color: #111; }
+.k-pills b { background: #f2683c; color: #fff; border-radius: 9px; padding: 1px 6px; font-size: 11px; margin-left: 5px; }
+.k-rows { position: absolute; top: 154px; bottom: 78px; left: 0; right: 0; overflow-y: auto; }
+.k-chatrow { width: 100%; display: flex; gap: 12px; padding: 10px 16px; border: 0; background: #fff; text-align: left; color: #111; }
+.k-av { flex-shrink: 0; width: 46px; height: 46px; border-radius: 18px; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 17px; }
+.k-mid { flex: 1; min-width: 0; }
+.k-nm { display: block; font-size: 15px; font-weight: 700; }
+.k-pv { display: block; margin-top: 3px; color: #8b8b8b; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.k-side { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; font-size: 11px; color: #999; }
+.k-un { background: #f2683c; color: #fff; border-radius: 10px; padding: 1px 7px; font-size: 12px; font-weight: 700; }
+.k-tabs { position: absolute; bottom: 0; left: 0; right: 0; height: 78px; padding-top: 10px; background: #fff; border-top: 1px solid #eee; display: flex; justify-content: space-around; font-size: 20px; filter: grayscale(1); opacity: .7; }
+
+.kakao { background: #b9c6d8; }
+.k-chat-head { position: absolute; top: 54px; left: 0; right: 0; height: 48px; padding: 0 14px; display: flex; align-items: center; justify-content: space-between; }
+.k-back-pill { border: 0; border-radius: 18px; background: #fff; padding: 6px 12px; font-size: 16px; font-weight: 600; color: #111; }
+.k-chat-head strong { font-size: 17px; }
+.k-msgs { position: absolute; top: 108px; bottom: 78px; left: 0; right: 0; padding: 8px 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
+.k-date { align-self: center; background: #7e8da3a0; color: #fff; border-radius: 12px; padding: 4px 12px; font-size: 11px; font-weight: 600; margin: 6px 0; }
+.k-row { display: flex; gap: 8px; }
+.k-row.out { justify-content: flex-end; }
+.k-col { display: flex; flex-direction: column; gap: 3px; }
+.k-line { display: flex; align-items: flex-end; gap: 5px; }
+.k-row .k-av { width: 38px; height: 38px; border-radius: 14px; font-size: 14px; }
+.k-av.ghost { visibility: hidden; }
+.k-who { font-size: 12px; color: #333; }
+.k-b { max-width: 200px; padding: 9px 12px; border-radius: 16px; font-size: 14px; line-height: 1.35; overflow-wrap: anywhere; background: #fff; }
+.out .k-b { background: #fae54a; }
+.k-time { font-size: 10px; color: #56657a; white-space: nowrap; }
+.k-input { position: absolute; left: 0; right: 0; bottom: 0; height: 78px; padding: 10px 10px 0; display: flex; align-items: flex-start; gap: 8px; background: #fff; }
+.k-plus { width: 34px; height: 34px; border: 0; border-radius: 50%; background: #eee; font-size: 22px; color: #555; }
+.k-field { flex: 1; min-height: 34px; padding: 8px 14px; border-radius: 18px; background: #f1f2f4; color: #999; font-size: 14px; }
+.k-field.has { color: #111; }
+.k-send { border: 0; border-radius: 18px; background: #fae54a; color: #111; font-weight: 700; padding: 0 14px; height: 34px; }
+.k-keyboard { position: absolute; left: 0; right: 0; bottom: 0; height: 260px; padding: 10px 4px; background: #d2d4da; display: flex; flex-direction: column; gap: 10px; transform: translateY(100%); transition: transform .3s; z-index: 25; }
+.k-krow { display: flex; justify-content: center; gap: 5px; }
+.k-key { flex: 1; max-width: 34px; height: 42px; border: 0; border-radius: 6px; background: #fff; color: #111; font-size: 18px; box-shadow: 0 1px 0 #0003; }
+.k-key.wide { max-width: none; flex: 5; font-size: 14px; }
+.kb .k-keyboard { transform: none; }
+.kb .k-input { bottom: 260px; height: 52px; }
+.kb .k-msgs { bottom: 312px; }
+
+/* ---------- LOCK + HOME COLORS (light wallpaper) ---------- */
+:root { --lock-text: #1c1c1e; }                 /* change this one color to restyle the lock text */
+.screen[data-view="lock"] .status-bar,
+.screen[data-view="home"] .status-bar { color: var(--lock-text); }
+.lock-date, .lock-time { color: var(--lock-text); }
+.lock-time { opacity: .9; }
+.swipe-hint { color: #fff; text-shadow: 0 1px 6px #0009; }
+.app { text-shadow: 0 1px 4px #000a; }
+#passcodeView { background: rgba(0,0,0,.55); }
+
+/* ---------- iOS NOTIFICATION ---------- */
+.notification {
+  padding: 11px 12px; gap: 11px; border-radius: 24px; color: #111;
+  background: rgba(255,255,255,.62); backdrop-filter: blur(28px) saturate(180%);
+  box-shadow: 0 2px 12px #0002;
+}
+.n-icon { width: 38px; height: 38px; border-radius: 9px; background: linear-gradient(#6fdc78, #30b94b); }
+.n-text b { font-size: 15px; font-weight: 600; }
+.n-text span { color: #2c2c2e; font-size: 14px; }
+.notification small { color: #6b6b70; opacity: 1; }
+.round-btn { background: rgba(40,40,44,.55); color: #fff; }
+.dark-indicator { cursor: pointer; }
+
+/* ---------- PHOTOS (GALLERY) ---------- */
+.screen[data-view="gallery"] .status-bar,
+.screen[data-view="photo"] .status-bar { color: #111; }
+.g-screen { background: #fff; color: #111; }
+.g-head { position: absolute; top: 54px; left: 0; right: 0; height: 52px; padding: 0 14px; display: flex; align-items: center; gap: 10px; }
+.g-head h2 { margin: 0; flex: 1; font-size: 28px; font-weight: 800; }
+.g-back { border: 0; background: none; color: #0a84ff; font-size: 30px; padding: 0; }
+.g-select { border: 0; border-radius: 16px; background: #eeeef0; color: #0a84ff; font-weight: 600; font-size: 14px; padding: 7px 14px; }
+.g-grid { position: absolute; top: 112px; bottom: 82px; left: 0; right: 0; overflow-y: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; align-content: start; }
+.g-cell { aspect-ratio: 1; border: 0; padding: 0; background: #eee; }
+.g-cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.g-count { grid-column: 1 / -1; text-align: center; color: #8a8a8e; font-size: 13px; padding: 14px; }
+.g-tabs { position: absolute; bottom: 0; left: 0; right: 0; height: 78px; padding-top: 10px; background: #f7f7f8; border-top: 1px solid #e3e3e6; display: flex; justify-content: space-around; font-size: 11px; color: #8a8a8e; }
+.g-tabs span { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.g-tabs i { font-style: normal; font-size: 20px; }
+.g-tabs .on { color: #0a84ff; }
+.g-view-head { position: absolute; top: 54px; left: 0; right: 0; height: 48px; padding: 0 14px; display: flex; align-items: center; justify-content: space-between; }
+.g-view-head strong { font-size: 15px; }
+.g-view-head span { width: 20px; }
+#gImg { position: absolute; top: 108px; bottom: 90px; left: 0; width: 100%; object-fit: contain; }
+.g-bar { position: absolute; bottom: 30px; left: 0; right: 0; display: flex; justify-content: space-around; color: #0a84ff; font-size: 22px; }

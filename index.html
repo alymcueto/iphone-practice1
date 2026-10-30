@@ -11,11 +11,10 @@
 <body>
   <main class="stage">
     <div class="phone">
-      <div class="screen" id="screen">
+      <div class="screen" id="screen" data-view="lock">
 
         <div class="wallpaper">
-          <div class="gradient-1"></div>
-          <div class="gradient-2"></div>
+
         </div>
 
         <div class="status-bar">
@@ -34,7 +33,9 @@
           <div class="lock-time" id="lockTime">12:26</div>
 
           <div class="notification">
-            <span class="n-icon">☎</span>
+            <span class="n-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </span>
             <span class="n-text"><b>Phone</b><span>Chan · 1 missed call</span></span>
             <small>Yesterday</small>
           </div>
@@ -64,10 +65,10 @@
 
           <div class="widgets">
             <div class="calendar-widget">
-              <span class="weekday">THURSDAY</span>
+              <span class="weekday">Wednesday</span>
               <span class="big-date">28</span>
-              <p>▏ Pick up Chan</p>
-              <p>▏ Finish the assignment</p>
+              <p>Pick up Chan</p>
+              <p>Finish the assignment</p>
             </div>
 
             <button class="photo-widget" data-app="Photos">
@@ -77,17 +78,17 @@
 
           <div class="app-grid">
             <button class="app" data-app="Instagram">
-              <span class="app-icon instagram">◎</span>
+              <span class="app-icon instagram"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.6"><rect x="4" y="4" width="24" height="24" rx="7"/><circle cx="16" cy="16" r="5.5"/><circle cx="23" cy="9" r="1.2" fill="#fff" stroke="none"/></svg></span>
               <span>Instagram</span>
             </button>
 
             <button class="app" data-app="Notes">
-              <span class="app-icon notes-icon">▤</span>
+              <span class="app-icon notes-icon"><svg width="40" height="26" viewBox="0 0 40 26" stroke="#d3d3d9" stroke-width="2" stroke-linecap="round"><path d="M5 6h30M5 13h30M5 20h30"/></svg></span>
               <span>Notes</span>
             </button>
 
             <button class="app" data-app="Photos">
-              <span class="app-icon photos-icon">🌈</span>
+              <span class="app-icon photos-icon"><svg width="42" height="42" viewBox="0 0 40 40"><ellipse cx="20" cy="11" rx="5.2" ry="9" fill="#ffcc33" transform="rotate(0 20 20)" style="mix-blend-mode:multiply"/><ellipse cx="20" cy="11" rx="5.2" ry="9" fill="#fb8c3a" transform="rotate(45 20 20)" style="mix-blend-mode:multiply"/><ellipse cx="20" cy="11" rx="5.2" ry="9" fill="#f2545b" transform="rotate(90 20 20)" style="mix-blend-mode:multiply"/><ellipse cx="20" cy="11" rx="5.2" ry="9" fill="#d65db1" transform="rotate(135 20 20)" style="mix-blend-mode:multiply"/><ellipse cx="20" cy="11" rx="5.2" ry="9" fill="#8e63d6" transform="rotate(180 20 20)" style="mix-blend-mode:multiply"/><ellipse cx="20" cy="11" rx="5.2" ry="9" fill="#4f8cf3" transform="rotate(225 20 20)" style="mix-blend-mode:multiply"/><ellipse cx="20" cy="11" rx="5.2" ry="9" fill="#35c4c9" transform="rotate(270 20 20)" style="mix-blend-mode:multiply"/><ellipse cx="20" cy="11" rx="5.2" ry="9" fill="#5ad26e" transform="rotate(315 20 20)" style="mix-blend-mode:multiply"/></svg></span>
               <span>Photos</span>
             </button>
 
@@ -99,31 +100,33 @@
             </button>
 
             <button class="app" data-app="Clock">
-              <span class="app-icon clock-icon">◷</span>
+              <span class="app-icon clock-icon"><svg width="42" height="42" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#fff"/><path d="M20 9v11l6 4" stroke="#111" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 20l5-9" stroke="#ff9500" stroke-width="1.3"/><circle cx="20" cy="20" r="1.7" fill="#ff9500"/></svg></span>
               <span>Clock</span>
             </button>
 
             <button class="app" data-app="Weather">
-              <span class="app-icon weather-icon">☁️</span>
+              <span class="app-icon weather-icon"><svg width="42" height="36" viewBox="0 0 40 34"><circle cx="29" cy="10" r="7" fill="#ffd64d"/><g fill="#fff"><circle cx="13" cy="24" r="7"/><circle cx="22" cy="19" r="9"/><circle cx="30" cy="25" r="6"/><rect x="13" y="24" width="17" height="7"/></g></svg></span>
               <span>Weather</span>
             </button>
 
             <button class="app" data-app="Settings">
-              <span class="app-icon settings-icon">⚙</span>
+              <span class="app-icon settings-icon"><svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14.5" fill="none" stroke="#e9e9ee" stroke-width="5" stroke-dasharray="5.7 5.7"/><circle cx="20" cy="20" r="11.5" fill="#e9e9ee"/><circle cx="20" cy="20" r="4.5" fill="#8a8a92"/></svg></span>
               <span>Settings</span>
             </button>
 
             <button class="app" data-app="Messages">
-              <span class="app-icon messages-icon">●</span>
+              <span class="app-icon messages-icon"><svg width="36" height="36" viewBox="0 0 34 34"><ellipse cx="17" cy="15" rx="14" ry="11.5" fill="#fff"/><path d="M8 24l-3 7 9-4z" fill="#fff"/></svg></span>
               <span>Messages</span>
             </button>
           </div>
 
+          <div class="page-dots"><i class="on"></i><i></i></div>
+
           <div class="dock">
-            <button class="dock-icon phone-icon" data-app="Phone">☎</button>
-            <button class="dock-icon message-icon" data-app="Messages">●</button>
-            <button class="dock-icon mail-icon" data-app="Messages">✉</button>
-            <button class="dock-icon safari-icon" data-app="Safari">➤</button>
+            <button class="dock-icon phone-icon" data-app="Phone"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></button>
+            <button class="dock-icon message-icon" data-app="Messages"><svg width="32" height="32" viewBox="0 0 34 34"><ellipse cx="17" cy="15" rx="14" ry="11.5" fill="#fff"/><path d="M8 24l-3 7 9-4z" fill="#fff"/></svg></button>
+            <button class="dock-icon kakao-icon" data-app="Kakao"><svg width="30" height="30" viewBox="0 0 34 34"><ellipse cx="17" cy="15" rx="13" ry="10.5" fill="#3b1e1e"/><path d="M9 23l-2 6 8-4z" fill="#3b1e1e"/></svg><b class="badge">42</b></button>
+            <button class="dock-icon safari-icon" data-app="Safari"><svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="16" fill="#3b82f6" stroke="#e6ecf8" stroke-width="2"/><g transform="rotate(45 19 19)"><path d="M19 7l4 12h-8z" fill="#ff3b30"/><path d="M19 31l4-12h-8z" fill="#fff"/></g></svg></button>
           </div>
 
           <div class="home-indicator"></div>
@@ -168,6 +171,62 @@
             <button class="send-button" type="submit">↑</button>
           </form>
 
+          <div class="home-indicator dark-indicator"></div>
+        </section>
+
+        <!-- PHOTOS: LIBRARY -->
+        <section class="view g-screen" id="galleryView">
+          <header class="g-head">
+            <button class="g-back" data-back="home">‹</button>
+            <h2>Recents</h2>
+            <button class="g-select" type="button">Select</button>
+          </header>
+          <div class="g-grid" id="gGrid"></div>
+          <nav class="g-tabs">
+            <span class="on"><i>▦</i>Library</span><span><i>♡</i>For You</span><span><i>▤</i>Albums</span><span><i>⌕</i>Search</span>
+          </nav>
+          <div class="home-indicator dark-indicator"></div>
+        </section>
+
+        <!-- PHOTOS: VIEWER -->
+        <section class="view g-screen" id="photoView">
+          <header class="g-view-head">
+            <button class="g-back" data-back="gallery">‹</button>
+            <strong id="gDate">Today</strong>
+            <span></span>
+          </header>
+          <img id="gImg" alt="">
+          <div class="g-bar"><span>⇪</span><span>♡</span><span>🗑</span></div>
+          <div class="home-indicator dark-indicator"></div>
+        </section>
+
+        <!-- KAKAOTALK: CHAT LIST -->
+        <section class="view k-screen" id="kakaoList">
+          <header class="k-head">
+            <button class="k-back" data-back="home">‹</button>
+            <h2>Chatting</h2>
+            <span class="k-icons">⌕⊕⚙</span>
+          </header>
+          <div class="k-pills"><span class="on">Entire</span><span>Didn't read<b id="kUnreadTotal">42</b></span></div>
+          <div class="k-rows" id="kRows"></div>
+          <nav class="k-tabs"><span>👤</span><span>💬</span><span>🗨</span><span>🛍</span><span>⋯</span></nav>
+          <div class="home-indicator dark-indicator"></div>
+        </section>
+
+        <!-- KAKAOTALK: CHAT -->
+        <section class="view k-screen kakao" id="kakaoChat">
+          <header class="k-chat-head">
+            <button class="k-back-pill" id="kBack" data-back="kakaoList">‹ <span id="kBackCount">42</span></button>
+            <strong id="kName">Chan</strong>
+            <span class="k-icons">⌕☰</span>
+          </header>
+          <div class="k-msgs" id="kMsgs"></div>
+          <div class="k-input">
+            <button type="button" class="k-plus">+</button>
+            <div class="k-field" id="kField">Enter message</div>
+            <button type="button" class="k-send" id="kSend">Send</button>
+          </div>
+          <div class="k-keyboard" id="kKeys"></div>
           <div class="home-indicator dark-indicator"></div>
         </section>
 
