@@ -707,14 +707,23 @@ button {
 .lock-time { position: absolute; top: 136px; width: 100%; text-align: center; font-size: 92px; font-weight: 600; letter-spacing: -2px; line-height: 1; opacity: .85; }
 
 .notification {
-  position: absolute; left: 14px; right: 14px; bottom: 128px; padding: 11px 12px;
-  display: flex; align-items: center; gap: 11px; font-size: 14px;
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 128px;
+  padding: 11px 12px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 14px;
   color: #111;                                  /* dark text, since the card is light */
   border-radius: 24px;
-  background: rgba(255, 255, 255, .35);         /* light and see-through so the blur shows */
-  -webkit-backdrop-filter: blur(40px) saturate(180%);
-  backdrop-filter: blur(40px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, .45);
+  
+  background: rgba(255, 255, 255, .25);         /* light and see-through so the blur shows */
+  -webkit-backdrop-filter: blur(17px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+  
+  border: 1px solid rgba(255, 255, 255, .15);
   box-shadow: 0 4px 24px rgba(0, 0, 0, .12);
 }
 .n-icon {
@@ -725,7 +734,7 @@ button {
 .n-icon svg { display: block; }
 .n-text { flex: 1; display: flex; flex-direction: column; gap: 2px; }
 .n-text b { font-size: 15px; font-weight: 600; }
-.n-text span { color: #2c2c2e; }
+.n-text span { color: #2c2c2e; font-size: 14px; }
 .notification small { align-self: flex-start; color: #6b6b70; font-size: 12px; }
 .lock-buttons { position: absolute; left: 40px; right: 40px; bottom: 48px; display: flex; align-items: center; justify-content: space-between; }
 .round-btn {
@@ -733,7 +742,7 @@ button {
   background: rgba(40, 40, 44, .55);
   -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
   display: grid; place-items: center;
-}.swipe-hint { font-size: 14px; font-weight: 600; }
+}.swipe-hint { font-size: 14px; font-weight: 600; } */
 
 /* ---------- PASSCODE ---------- */
 #passcodeView { background: rgba(0,0,0,.4); backdrop-filter: blur(30px); }
@@ -833,11 +842,17 @@ button {
 .app { text-shadow: 0 1px 4px #000a; }
 #passcodeView { background: rgba(0,0,0,.55); }
 
-/* ---------- iOS NOTIFICATION ---------- */
+/* ---------- iOS NOTIFICATION ----------
 .notification {
-  padding: 11px 12px; gap: 11px; border-radius: 24px; color: #111;
-  background: rgba(255,255,255,.62); backdrop-filter: blur(28px) saturate(180%);
-  box-shadow: 0 2px 12px #0002;
+  padding: 11px 12px;
+  gap: 11px;
+  border-radius: 24px;
+  color: #111;
+  background: rgba(255,255,255,.08);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(255,255,255,.15);
+  box-shadow: 0 4px 24px rgba(0,0,0,.08);
 }
 .n-icon { width: 38px; height: 38px; border-radius: 9px; background: linear-gradient(#6fdc78, #30b94b); }
 .n-text b { font-size: 15px; font-weight: 600; }
@@ -1033,4 +1048,56 @@ button {
 
 .message-notif-app {
   gap: 8px;
+}
+
+/* PHONE NOTIFICATION - IOS STYLE */
+
+.phone-notification {
+  display: block;
+  padding: 9px 12px 11px;
+  border-radius: 21px;
+}
+
+.phone-notif-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.phone-notif-app {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #555;
+  letter-spacing: .4px;
+}
+
+.phone-notif-app .n-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+}
+
+.phone-notif-app .n-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.phone-notif-header small {
+  font-size: 12px;
+  color: #777;
+}
+
+.phone-notif-content b {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+
+.phone-notif-content p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.25;
 }
