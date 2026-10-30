@@ -307,28 +307,26 @@ $("#messageForm").addEventListener("submit", event => {
 });
 
 // Create a new conversation.
-$("#composeButton").addEventListener("click", () => {
+// Create a new KakaoTalk conversation.
+$("#messagesComposeButton").addEventListener("click", () => {
   const name = prompt("Enter your character's name:");
 
   if (!name || !name.trim()) return;
 
   const cleanName = name.trim();
 
-  const person = {
+  const chat = {
     name: cleanName,
     initial: cleanName.charAt(0).toUpperCase(),
-    color: "purple",
-    time: "now",
-    preview: "iMessage",
-    messages: [
-      ["in", "hey!"]
-    ]
+    color: "#9a8fe0",
+    unread: 0,
+    history: [["in", "hey!", "now"]],
+    script: []
   };
 
-  people.unshift(person);
-
-  renderConversations();
-  openChat(person);
+  KAKAO.unshift(chat);
+  renderKakaoList();
+  openKakao(chat);
 });
 
 // Display the current time in the status bar.
@@ -455,11 +453,22 @@ let kChat = null, kTyped = 0;
 
 function kBadges() {
   const total = KAKAO.reduce((n, c) => n + c.unread, 0);
+
   const badge = $(".kakao-icon .badge");
-  badge.textContent = total;
-  badge.style.display = total ? "" : "none";
-  $("#kUnreadTotal").textContent = total;
-  $("#kBackCount").textContent = total;
+  if (badge) {
+    badge.textContent = total;
+    badge.style.display = total ? "" : "none";
+  }
+
+  const unreadTotal = $("#kUnreadTotal");
+  if (unreadTotal) {
+    unreadTotal.textContent = total;
+  }
+
+  const backCount = $("#kBackCount");
+  if (backCount) {
+    backCount.textContent = total;
+  }
 }
 
 function renderKakaoList() {
@@ -473,14 +482,42 @@ function renderKakaoList() {
     av.style.background = c.color;
     const mid = el("span", "k-mid");
     mid.append(el("span", "k-nm", c.name), el("span", "k-pv", last[1]));
-    const side = el("span", "k-side", last[2]);
-    if (c.unread) side.append(el("span", "k-un", c.unread));
+    
+    const side = el("span", "k-side");
+    side.append(el("span", "k-time", last[2] || ""));
+    
+      if (c.unread) {
+        side.append(el("span", "k-un", c.unread));
+      }
+
+      side.append(el("span", "k-star", "☆"));
+    
     row.append(av, mid, side);
     row.addEventListener("click", () => openKakao(c));
     box.appendChild(row);
   });
   kBadges();
 }
+
+$("#kakaoComposeButton").addEventListener("click", () => {
+  const name = prompt("Enter your character's name:");
+  if (!name || !name.trim()) return;
+
+  const cleanName = name.trim();
+
+  const chat = {
+    name: cleanName,
+    initial: cleanName.charAt(0).toUpperCase(),
+    color: "#9a8fe0",
+    unread: 0,
+    history: [["in", "hey!", "now"]],
+    script: []
+  };
+
+  KAKAO.unshift(chat);
+  renderKakaoList();
+  openKakao(chat);
+});
 
 function kRender(m, prev) {
   const out = m[0] === "out";

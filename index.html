@@ -188,7 +188,7 @@
           <header class="app-header">
             <button class="back-button" data-back="home">‹ Home</button>
             <h2>Messages</h2>
-            <button id="composeButton" class="compose-button">✎</button>
+            <button id="messagesComposeButton" class="compose-button">✎</button>
           </header>
 
           <div class="search-bar">⌕ &nbsp; Search</div>
@@ -251,16 +251,35 @@
           <div class="home-indicator dark-indicator"></div>
         </section>
 
+        
         <!-- KAKAOTALK: CHAT LIST -->
         <section class="view k-screen" id="kakaoList">
           <header class="k-head">
-            <button class="k-back" data-back="home">‹</button>
-            <h2>Chatting</h2>
-            <span class="k-icons">⌕⊕⚙</span>
+            <button class="k-back" data-back="home">×</button>
+            <h2>kakaomail</h2>
+            <div class="k-head-actions">
+              <button>✓</button>
+              <button>⌕</button>
+              <button>☰</button>
+            </div>
           </header>
-          <div class="k-pills"><span class="on">Entire</span><span>Didn't read<b id="kUnreadTotal">42</b></span></div>
+
+          <div class="k-pills">
+            <span class="on">Inbox</span>
+            <span>Shopping</span>
+            <span>Social</span>
+            <span>Promotions</span>
+          </div>
+
           <div class="k-rows" id="kRows"></div>
-          <nav class="k-tabs"><span>👤</span><span>💬</span><span>🗨</span><span>🛍</span><span>⋯</span></nav>
+
+          <div class="k-account">
+            <span class="k-account-avatar">🐻</span>
+            <span>ryan@kakao.com</span>
+            <span>⌄</span>
+          </div>
+
+          <button class="k-compose" id="kakaoComposeButton">✎</button>
           <div class="home-indicator dark-indicator"></div>
         </section>
 

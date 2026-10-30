@@ -67,7 +67,7 @@ button {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: url("images/wallpaper-1.png") center / cover;
+  background: url("images/lockscreen.png") center / cover no-repeat;
 }
 
 .status-bar {
@@ -120,6 +120,10 @@ button {
 
 /* HOME SCREEN */
 
+#homeView {
+  background: url("images/homescreen.jpg") center / cover no-repeat;
+}
+
 .widgets {
   position: absolute;
   top: 82px;
@@ -130,8 +134,7 @@ button {
   gap: 14px;
 }
 
-.calendar-widget,
-.photo-widget {
+.calendar-widget, .photo-widget {
   height: 145px;
   /*border-left: 3px solid #fcfcfc;*/
   padding-left: 7px;
@@ -171,7 +174,7 @@ button {
   position: relative;
   background:
     linear-gradient(transparent 55%, #0007),
-    url("images/wallpaper-1.png")
+    url("images/widget-1.jpg")
     center / cover;
 }
 
@@ -745,8 +748,30 @@ button {
 }.swipe-hint { font-size: 14px; font-weight: 600; } */
 
 /* ---------- PASSCODE ---------- */
-#passcodeView { background: rgba(0,0,0,.4); backdrop-filter: blur(30px); }
-.passcode-title { position: absolute; top: 118px; width: 100%; text-align: center; font-size: 19px; font-weight: 700; }
+#passcodeView {
+  background: transparent;
+  isolation: isolate;
+}
+
+#passcodeView::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.45);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+}
+
+.passcode-title {
+  position: absolute;
+  top: 118px;
+  width: 100%;
+  text-align: center;
+  font-size: 19px;
+  font-weight: 700;
+}
+
 .dots { position: absolute; top: 168px; width: 100%; display: flex; justify-content: center; gap: 16px; }
 .dot { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #fff; transition: background .12s; }
 .dot.filled { background: #fff; }
@@ -833,14 +858,14 @@ button {
 .kb .k-msgs { bottom: 312px; }
 
 /* ---------- LOCK + HOME COLORS (light wallpaper) ---------- */
-:root { --lock-text: #1c1c1e; }                 /* change this one color to restyle the lock text */
+:root { --lock-text: #f7f7f7; }                 /* change this one color to restyle the lock text */
 .screen[data-view="lock"] .status-bar,
 .screen[data-view="home"] .status-bar { color: var(--lock-text); }
 .lock-date, .lock-time { color: var(--lock-text); }
 .lock-time { opacity: .9; }
 .swipe-hint { color: #fff; text-shadow: 0 1px 6px #0009; }
 .app { text-shadow: 0 1px 4px #000a; }
-#passcodeView { background: rgba(0,0,0,.55); }
+/*#passcodeView { background: rgba(0,0,0,.55); }
 
 /* ---------- iOS NOTIFICATION ----------
 .notification {
@@ -1100,4 +1125,192 @@ button {
   margin: 0;
   font-size: 14px;
   line-height: 1.25;
+}
+
+
+/* ---------- KAKAOTALK MAIL-STYLE INBOX ---------- */
+
+#kakaoList {
+  background: #fff;
+  color: #222;
+}
+
+#kakaoList .k-head {
+  top: 48px;
+  height: 55px;
+  padding: 0 16px;
+  gap: 10px;
+  background: #fff;
+}
+
+#kakaoList .k-back {
+  color: #222;
+  font-size: 30px;
+  width: 28px;
+}
+
+#kakaoList .k-head h2 {
+  flex: 1;
+  font-size: 22px;
+  font-weight: 650;
+  letter-spacing: -1px;
+}
+
+.k-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+}
+
+.k-head-actions button {
+  border: 0;
+  background: none;
+  color: #222;
+  font-size: 24px;
+  padding: 0;
+}
+
+#kakaoList .k-pills {
+  top: 103px;
+  left: 0;
+  right: 0;
+  height: 48px;
+  display: flex;
+  justify-content: space-around;
+  gap: 0;
+  border-bottom: 1px solid #eee;
+}
+
+#kakaoList .k-pills span {
+  padding: 12px 7px;
+  border: 0;
+  border-radius: 0;
+  color: #aaa;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+#kakaoList .k-pills span.on {
+  color: #222;
+  background: none;
+  border-bottom: 2px solid #222;
+}
+
+#kakaoList .k-rows {
+  top: 151px;
+  bottom: 65px;
+  overflow-y: auto;
+  background: #fff;
+}
+
+#kakaoList .k-chatrow {
+  min-height: 94px;
+  padding: 13px 17px;
+  gap: 13px;
+  align-items: center;
+  background: #fff;
+  color: #222;
+}
+
+#kakaoList .k-av {
+  width: 49px;
+  height: 49px;
+  border-radius: 17px;
+  font-size: 19px;
+}
+
+#kakaoList .k-mid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#kakaoList .k-nm {
+  font-size: 17px;
+  font-weight: 650;
+  color: #292929;
+}
+
+#kakaoList .k-pv {
+  margin: 0;
+  font-size: 13px;
+  color: #777;
+}
+
+#kakaoList .k-side {
+  align-self: stretch;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 4px;
+  font-size: 11px;
+  color: #aaa;
+}
+
+#kakaoList .k-time {
+  font-size: 11px;
+  color: #aaa;
+  white-space: nowrap;
+}
+
+#kakaoList .k-star {
+  font-size: 22px;
+  line-height: 1;
+  color: #ccc;
+  font-weight: 300;
+}
+
+#kakaoList .k-un {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: #fae100;
+  color: #333;
+}
+
+.k-account {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  background: #f8f8f8;
+  border-top: 1px solid #eee;
+  border-radius: 18px 18px 0 0;
+  color: #333;
+  font-size: 14px;
+  z-index: 10;
+}
+
+.k-account-avatar {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fae100;
+  font-size: 17px;
+}
+
+.k-compose {
+  position: absolute;
+  z-index: 12;
+  right: 15px;
+  bottom: 61px;
+  width: 65px;
+  height: 65px;
+  border: 0;
+  border-radius: 50%;
+  background: #fae100;
+  color: #222;
+  font-size: 30px;
+  box-shadow: 0 3px 12px #0002;
+}
+
+#kakaoList .home-indicator {
+  z-index: 15;
 }
