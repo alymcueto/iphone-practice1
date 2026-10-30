@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,11 +21,46 @@
         <div class="status-bar">
           <span id="statusTime">9:02</span>
           <span class="island"></span>
-          <span class="status-icons">▮ ▮ ◕ ▰</span>
+          <span class="status-icons">
+            <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 4.2a10 10 0 0 1 14 0"/><path d="M4 7a6.5 6.5 0 0 1 9 0"/><circle cx="8.5" cy="10" r="1" fill="currentColor" stroke="none"/></svg>
+            <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="17" height="9" rx="2" fill="currentColor"/><path d="M25 4.5v4c.8-.3 1.5-1.1 1.5-2s-.7-1.7-1.5-2z" fill="currentColor" opacity=".5"/></svg>
+          </span>
         </div>
 
+        <!-- LOCK SCREEN -->
+        <section class="view lock active" id="lockView">
+          <div class="lock-date" id="lockDate">Wednesday, 28 October</div>
+          <div class="lock-time" id="lockTime">12:26</div>
+
+          <div class="notification">
+            <span class="n-icon">☎</span>
+            <span class="n-text"><b>Phone</b><span>Chan · 1 missed call</span></span>
+            <small>Yesterday</small>
+          </div>
+
+          <div class="lock-buttons">
+            <span class="round-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M8 2h8v4l-1.5 2v13a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V8L8 6V2zm4 7.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z"/></svg></span>
+            <span class="swipe-hint">Swipe up to open</span>
+            <span class="round-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M9 3 7.2 5H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3.2L15 3H9zm3 14.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg></span>
+          </div>
+          <div class="home-indicator"></div>
+        </section>
+
+        <!-- PASSCODE -->
+        <section class="view passcode" id="passcodeView">
+          <div class="passcode-title">Enter passcode</div>
+          <div class="dots" id="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+          <div class="keypad" id="keypad"></div>
+          <div class="pc-actions">
+            <button type="button">Emergency</button>
+            <button type="button" id="cancelCode">Cancel</button>
+          </div>
+          <div class="home-indicator"></div>
+        </section>
+
         <!-- HOME SCREEN -->
-        <section class="view home active" id="homeView">
+        <section class="view home" id="homeView">
 
           <div class="widgets">
             <div class="calendar-widget">

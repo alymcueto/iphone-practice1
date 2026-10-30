@@ -2,6 +2,8 @@
 const $ = (selector) => document.querySelector(selector);
 
 const views = {
+  lock: $("#lockView"),
+  passcode: $("#passcodeView"),
   home: $("#homeView"),
   messages: $("#messagesView"),
   chat: $("#chatView"),
@@ -86,6 +88,7 @@ function showView(viewName) {
   });
 
   views[viewName].classList.add("active");
+  $("#screen").dataset.view = viewName;
 }
 
 function renderConversations() {
@@ -313,14 +316,84 @@ $("#composeButton").addEventListener("click", () => {
 });
 
 // Display the current time in the status bar.
+// ---------- STORY SETTINGS (edit these!) ----------
+const STORY = {
+  time: "12:26",                  // fixed story time; use "" to show the real time
+  date: "Wednesday, 28 October",
+  passcode: "021199"
+};
+
 function updateTime() {
-  $("#statusTime").textContent =
-    new Date().toLocaleTimeString([], {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: false
-    });
+  const real = new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit", hour12: false });
+  const t = STORY.time || real;
+  $("#statusTime").textContent = t;
+  $("#lockTime").textContent = t;
+  $("#lockDate").textContent = STORY.date;
 }
 
 updateTime();
 renderConversations();
+
+// ---------- LOCK SCREEN: swipe up (or tap) to open ----------
+let startY = null;
+views.lock.addEventListener("pointerdown", e => { startY = e.clientY; });
+views.lock.addEventListener("pointerup", e => {
+  if (startY === null) return;
+  const moved = startY - e.clientY;
+  startY = null;
+  if (moved > 50 || Math.abs(moved) < 8) showView("passcode");
+});
+
+// ---------- PASSCODE ----------
+const LETTERS = { 2: "ABC", 3: "DEF", 4: "GHI", 5: "JKL", 6: "MNO", 7: "PQRS", 8: "TUV", 9: "WXYZ" };
+let entered = "";
+const dots = document.querySelectorAll(".dot");
+
+"1234567890".split("").forEach(n => {
+  const key = document.createElement("button");
+  key.type = "button";
+  key.className = "key" + (n === "0" ? " zero" : "");
+  key.innerHTML = `<span>${n}</span><small>${LETTERS[n] || ""}</small>`;
+  key.addEventListener("click", () => pressKey(n));
+  $("#keypad").appendChild(key);
+});
+
+function drawDots() {
+  dots.forEach((d, i) => d.classList.toggle("filled", i < entered.length));
+}
+
+function clearCode() {
+  entered = "";
+  drawDots();
+}
+
+function pressKey(n) {
+  if (entered.length >= 6) return;
+  entered += n;
+  drawDots();
+  if (entered.length === 6) setTimeout(checkCode, 150);
+}
+
+function checkCode() {
+  if (entered === STORY.passcode) {
+    clearCode();
+    showView("home");
+    return;
+  }
+  $("#dots").classList.add("shake");           // wrong code: shake, then clear
+  setTimeout(() => {
+    $("#dots").classList.remove("shake");
+    clearCode();
+  }, 450);
+}
+
+$("#cancelCode").addEventListener("click", () => {
+  clearCode();
+  showView("lock");
+});
+
+document.addEventListener("keydown", e => {   // typing on a real keyboard works too
+  if (!views.passcode.classList.contains("active")) return;
+  if (/^\d$/.test(e.key)) pressKey(e.key);
+  if (e.key === "Backspace") { entered = entered.slice(0, -1); drawDots(); }
+});

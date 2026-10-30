@@ -4,7 +4,7 @@
 }
 
 :root {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: white;
 }
 
@@ -107,8 +107,9 @@ button {
 
 .status-icons {
   margin-left: auto;
-  font-size: 12px;
-  letter-spacing: -2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .view {
@@ -709,3 +710,44 @@ button {
     bottom: max(8px, env(safe-area-inset-bottom));
   }
 }
+
+/* ---------- STATUS BAR: dark text on light app screens ---------- */
+.screen[data-view="messages"] .status-bar,
+.screen[data-view="chat"] .status-bar,
+.screen[data-view="other"] .status-bar { color: #111; }
+
+/* ---------- LOCK SCREEN ---------- */
+.lock-date { position: absolute; top: 112px; width: 100%; text-align: center; font-size: 18px; font-weight: 600; opacity: .85; }
+.lock-time { position: absolute; top: 136px; width: 100%; text-align: center; font-size: 92px; font-weight: 600; letter-spacing: -2px; line-height: 1; opacity: .85; }
+.notification {
+  position: absolute; left: 14px; right: 14px; bottom: 128px; padding: 12px;
+  border-radius: 24px; background: #6b6b70aa; backdrop-filter: blur(22px);
+  display: flex; align-items: center; gap: 10px; font-size: 14px;
+}
+.n-icon { width: 36px; height: 36px; border-radius: 9px; background: #55c95c; display: grid; place-items: center; font-size: 18px; }
+.n-text { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.n-text b { font-weight: 600; }
+.notification small { align-self: flex-start; opacity: .7; font-size: 12px; }
+.lock-buttons { position: absolute; left: 40px; right: 40px; bottom: 48px; display: flex; align-items: center; justify-content: space-between; }
+.round-btn { width: 50px; height: 50px; border-radius: 50%; background: #3a3a3ecc; backdrop-filter: blur(20px); display: grid; place-items: center; }
+.swipe-hint { font-size: 14px; font-weight: 600; }
+
+/* ---------- PASSCODE ---------- */
+#passcodeView { background: rgba(0,0,0,.4); backdrop-filter: blur(30px); }
+.passcode-title { position: absolute; top: 118px; width: 100%; text-align: center; font-size: 19px; font-weight: 700; }
+.dots { position: absolute; top: 168px; width: 100%; display: flex; justify-content: center; gap: 16px; }
+.dot { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #fff; transition: background .12s; }
+.dot.filled { background: #fff; }
+.keypad { position: absolute; top: 235px; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: repeat(3, 78px); gap: 14px 24px; }
+.key {
+  width: 78px; height: 78px; border: 0; border-radius: 50%; background: #ffffff2e; color: #fff;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1;
+}
+.key span { font-size: 32px; font-weight: 300; }
+.key small { font-size: 9px; font-weight: 700; letter-spacing: 2px; margin-top: 3px; min-height: 9px; }
+.key:active { background: #ffffff66; }
+.key.zero { grid-column: 2; }
+.pc-actions { position: absolute; left: 34px; right: 34px; bottom: 44px; display: flex; justify-content: space-between; }
+.pc-actions button { border: 0; background: none; color: #fff; font-size: 16px; font-weight: 600; }
+.shake { animation: shake .4s; }
+@keyframes shake { 20%, 60% { transform: translateX(-10px); } 40%, 80% { transform: translateX(10px); } }
