@@ -867,3 +867,170 @@ button {
 .g-view-head span { width: 20px; }
 #gImg { position: absolute; top: 108px; bottom: 90px; left: 0; width: 100%; object-fit: contain; }
 .g-bar { position: absolute; bottom: 30px; left: 0; right: 0; display: flex; justify-content: space-around; color: #0a84ff; font-size: 22px; }
+
+/* ---------- LOCK SCREEN NOTIFICATION STACK ---------- */
+
+.notifications-stack {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 128px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  z-index: 5;
+}
+
+.notifications-stack .notification {
+  position: relative;
+  left: auto;
+  right: auto;
+  bottom: auto;
+
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Different app icon color */
+.message-notif-icon {
+  background: linear-gradient(#67e27f, #28b946);
+}
+
+/* ---------- LOCK SCREEN NOTIFICATIONS ---------- */
+
+.notifications-stack {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 128px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 5;
+}
+
+/* Override the original absolute positioning */
+.notifications-stack > .notification {
+  position: relative;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* PHONE NOTIFICATION */
+.phone-notification {
+  display: flex;
+  align-items: center;
+}
+
+/* MESSAGES NOTIFICATION */
+.messages-notification {
+  display: block;
+  padding: 12px 13px 15px;
+  border-radius: 24px;
+}
+
+/* Header: icon + MESSAGES + now */
+.message-notif-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.message-notif-app {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #555;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .4px;
+}
+
+.message-notif-app .n-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.message-notif-header small {
+  color: #777;
+  font-size: 12px;
+}
+
+/* Sender name + message */
+.message-notif-content {
+  padding-left: 42px;
+  color: #171719;
+}
+
+.message-notif-content b {
+  display: block;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.message-notif-content p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.35;
+  color: #29292b;
+}
+
+/* ---------- COMPACT MESSAGES NOTIFICATION ---------- */
+
+.messages-notification {
+  padding: 9px 12px 11px;
+  border-radius: 21px;
+}
+
+/* App icon and MESSAGES header */
+.message-notif-header {
+  margin-bottom: 7px;
+}
+
+.message-notif-app .n-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.message-notif-app {
+  gap: 8px;
+  font-size: 11px;
+}
+
+/* Sender and message */
+.message-notif-content {
+  padding-left: 0px;
+}
+
+.message-notif-content b {
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+
+.message-notif-content p {
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+/* Smaller Messages notification icon */
+.message-notif-app .n-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+}
+
+.message-notif-app .n-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.message-notif-app {
+  gap: 8px;
+}
