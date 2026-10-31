@@ -15,7 +15,8 @@ body {
   background: radial-gradient(ellipse, #eeeeF2, #b8bac2);
 }
 
-button, input {
+button,
+input {
   font: inherit;
 }
 
@@ -106,19 +107,13 @@ button {
   position: absolute;
   inset: 0;
   display: none;
-  animation: appear .22s ease;
 }
 
 .view.active {
   display: block;
 }
 
-@keyframes appear {
-  from { opacity: .65; transform: scale(.985); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* HOME SCREEN */
+/* ---------- HOME SCREEN ---------- */
 
 #homeView {
   background: url("images/homescreen.jpg") center / cover no-repeat;
@@ -130,13 +125,12 @@ button {
   left: 18px;
   right: 18px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 14px;
 }
 
-.calendar-widget, .photo-widget {
+.calendar-widget,
+.photo-widget {
   height: 145px;
-  /*border-left: 3px solid #fcfcfc;*/
   padding-left: 7px;
   border-radius: 28px;
   overflow: hidden;
@@ -151,7 +145,6 @@ button {
 .weekday {
   display: block;
   color: #ff594b;
-  font-size: 12px;
   font-weight: 800;
 }
 
@@ -172,10 +165,7 @@ button {
 
 .photo-widget {
   position: relative;
-  background:
-    linear-gradient(transparent 55%, #0007),
-    url("images/widget-1.jpg")
-    center / cover;
+  background: linear-gradient(transparent 55%, #0007), url("images/widget-1.jpg") center / cover;
 }
 
 .photo-widget span {
@@ -209,9 +199,6 @@ button {
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  font-size: 10px;
-  font-weight: 650;
-  text-shadow: 0 1px 4px #0009;
 }
 
 .app-icon {
@@ -231,11 +218,6 @@ button {
 .notes-icon {
   background: linear-gradient(#ffe27c 0 35%, #fff 35%);
   color: #bcbcc2;
-}
-
-.photos-icon {
-  background: #fff;
-  font-size: 33px;
 }
 
 .calendar-icon {
@@ -270,11 +252,6 @@ button {
 .settings-icon {
   background: linear-gradient(#b9b9be, #777982);
   color: #eee;
-}
-
-.messages-icon {
-  background: #40c866;
-  color: white;
 }
 
 .dock {
@@ -312,11 +289,6 @@ button {
   background: #43c95c;
 }
 
-.mail-icon {
-  background: #ffe84d;
-  color: #4d3022;
-}
-
 .safari-icon {
   background: #fff;
   color: #3479e8;
@@ -340,229 +312,13 @@ button {
   color: #666;
 }
 
-/* MESSAGES APP */
-
-.app-screen {
-  background: #f7f7fa;
-  color: #171719;
-}
-
-.app-header {
-  position: absolute;
-  top: 55px;
-  left: 0;
-  right: 0;
-  height: 48px;
-  padding: 0 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.app-header h2 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 750;
-}
-
-.back-button,
-.compose-button {
-  border: 0;
-  background: none;
-  color: #087eff;
-  font-size: 13px;
-  padding: 4px 0;
-}
-
-.compose-button {
-  font-size: 22px;
-}
-
-.search-bar {
-  position: absolute;
-  top: 110px;
-  left: 15px;
-  right: 15px;
-  height: 34px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  background: #e8e8ed;
-  color: #85858c;
-  font-size: 13px;
-}
-
-.conversation-list {
-  position: absolute;
-  top: 157px;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  overflow-y: auto;
-  background: white;
-}
-
-.conversation {
-  width: 100%;
-  min-height: 78px;
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  text-align: left;
-  border: 0;
-  background: white;
-  color: #171719;
-  position: relative;
-}
-
-.conversation::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 75px;
-  right: 0;
-  height: 1px;
-  background: #e8e8ed;
-}
-
-.avatar,
-.contact-avatar {
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: white;
-  font-size: 18px;
-  font-weight: 650;
-  background: linear-gradient(140deg, #8ec8c0, #506f8d);
-}
-
-.avatar.pink,
-.contact-avatar.pink {
-  background: linear-gradient(140deg, #efb8ca, #a05c7e);
-}
-
-.avatar.purple,
-.contact-avatar.purple {
-  background: linear-gradient(140deg, #c3a5f3, #6252a0);
-}
-
-.avatar.orange,
-.contact-avatar.orange {
-  background: linear-gradient(140deg, #f6c17a, #c16b3c);
-}
-
-.conversation-copy {
-  min-width: 0;
-  flex: 1;
-}
-
-.conversation-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.conversation-name {
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.conversation-time {
-  color: #888;
-  font-size: 10px;
-}
-
-.conversation-preview {
-  display: block;
-  margin-top: 5px;
-  color: #888;
-  font-size: 12px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+/* ---------- MESSAGES APP ---------- */
 
 .dark-indicator {
   background: #151515;
 }
 
-/* CHAT SCREEN */
-
-.chat-header {
-  position: absolute;
-  top: 54px;
-  left: 0;
-  right: 0;
-  height: 61px;
-  padding: 0 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #e4e4e9;
-  background: #f7f7fa;
-  z-index: 2;
-}
-
-.contact-heading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-}
-
-.contact-avatar {
-  width: 29px;
-  height: 29px;
-  font-size: 12px;
-}
-
-.contact-heading strong {
-  font-size: 11px;
-}
-
-.contact-heading small {
-  font-size: 9px;
-  color: #888;
-}
-
-.video-icon {
-  color: #087eff;
-}
-
-.chat-date {
-  position: absolute;
-  top: 126px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: #8b8b92;
-  font-size: 10px;
-}
-
-.chat-messages {
-  position: absolute;
-  top: 151px;
-  bottom: 70px;
-  left: 0;
-  right: 0;
-  padding: 12px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.bubble-row {
-  display: flex;
-  width: 100%;
-}
-
-.bubble-row.outgoing {
-  justify-content: flex-end;
-}
+/* ---------- CHAT SCREEN ---------- */
 
 .bubble {
   max-width: 78%;
@@ -580,103 +336,17 @@ button {
   border-bottom-left-radius: 5px;
 }
 
-.outgoing .bubble {
-  background: #1684f9;
-  color: white;
-  border-bottom-right-radius: 5px;
-}
-
-.message-form {
-  position: absolute;
-  bottom: 20px;
-  left: 10px;
-  right: 10px;
-  min-height: 39px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.plus-button {
-  width: 31px;
-  height: 31px;
-  border: 0;
-  border-radius: 50%;
-  background: #e5e5ea;
-  color: #74747c;
-  font-size: 24px;
-}
-
-.message-form input {
-  flex: 1;
-  min-width: 0;
-  height: 36px;
-  padding: 0 13px;
-  border: 1px solid #d6d6dc;
-  border-radius: 20px;
-  outline: none;
-  background: white;
-  color: #111;
-  font-size: 14px;
-}
-
-.message-form input:focus {
-  border-color: #1684f9;
-}
-
-.send-button {
-  display: none;
-  width: 29px;
-  height: 29px;
-  border: 0;
-  border-radius: 50%;
-  background: #1684f9;
-  color: white;
-  font-size: 20px;
-}
-
-.send-button.visible {
-  display: block;
-}
-
-/* OTHER DEMO APPS */
-
-.other-content {
-  position: absolute;
-  top: 115px;
-  left: 15px;
-  right: 15px;
-  color: #222;
-}
-
-.demo-card {
-  margin-bottom: 12px;
-  padding: 17px;
-  border-radius: 16px;
-  background: white;
-  font-size: 14px;
-}
-
-.demo-card h3 {
-  margin: 0 0 8px;
-}
-
-.demo-card p {
-  color: #777;
-  line-height: 1.5;
-}
+/* ---------- OTHER DEMO APPS ---------- */
 
 @media (max-width: 600px) {
   body {
     display: block;
     background: #000;
   }
-
   .stage {
     display: block;
     padding: 0;
   }
-
   .phone {
     width: 100vw;
     height: 100dvh;
@@ -685,29 +355,40 @@ button {
     border-radius: 0;
     box-shadow: none;
   }
-
   .phone::after,
   .desktop-note {
     display: none;
   }
-
   .screen {
     border-radius: 0;
   }
-
   .home-indicator {
     bottom: max(8px, env(safe-area-inset-bottom));
   }
 }
 
-/* ---------- STATUS BAR: dark text on light app screens ---------- */
-.screen[data-view="messages"] .status-bar,
-.screen[data-view="chat"] .status-bar,
-.screen[data-view="other"] .status-bar { color: #111; }
-
 /* ---------- LOCK SCREEN ---------- */
-.lock-date { position: absolute; top: 112px; width: 100%; text-align: center; font-size: 18px; font-weight: 600; opacity: .85; }
-.lock-time { position: absolute; top: 136px; width: 100%; text-align: center; font-size: 92px; font-weight: 600; letter-spacing: -2px; line-height: 1; opacity: .85; }
+
+.lock-date {
+  position: absolute;
+  top: 112px;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  opacity: .85;
+}
+
+.lock-time {
+  position: absolute;
+  top: 136px;
+  width: 100%;
+  text-align: center;
+  font-size: 92px;
+  font-weight: 600;
+  letter-spacing: -2px;
+  line-height: 1;
+}
 
 .notification {
   position: absolute;
@@ -719,35 +400,64 @@ button {
   align-items: center;
   gap: 11px;
   font-size: 14px;
-  color: #111;                                  /* dark text, since the card is light */
+  color: #111;
   border-radius: 24px;
-  
-  background: rgba(255, 255, 255, .25);         /* light and see-through so the blur shows */
+  background: rgba(255, 255, 255, .25);
   -webkit-backdrop-filter: blur(17px) saturate(150%);
   backdrop-filter: blur(20px) saturate(150%);
-  
   border: 1px solid rgba(255, 255, 255, .15);
   box-shadow: 0 4px 24px rgba(0, 0, 0, .12);
 }
+
 .n-icon {
-  width: 38px; height: 38px; flex-shrink: 0; border-radius: 22.5%;
-  display: grid; place-items: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 22.5%;
+  display: grid;
+  place-items: center;
   background: linear-gradient(#67e27f, #28b946);
 }
-.n-icon svg { display: block; }
-.n-text { flex: 1; display: flex; flex-direction: column; gap: 2px; }
-.n-text b { font-size: 15px; font-weight: 600; }
-.n-text span { color: #2c2c2e; font-size: 14px; }
-.notification small { align-self: flex-start; color: #6b6b70; font-size: 12px; }
-.lock-buttons { position: absolute; left: 40px; right: 40px; bottom: 48px; display: flex; align-items: center; justify-content: space-between; }
+
+.n-icon svg {
+  display: block;
+}
+
+.notification small {
+  align-self: flex-start;
+  color: #6b6b70;
+  font-size: 12px;
+}
+
+.lock-buttons {
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  bottom: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .round-btn {
-  width: 50px; height: 50px; border-radius: 50%; color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: #fff;
   background: rgba(40, 40, 44, .55);
-  -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
-  display: grid; place-items: center;
-}.swipe-hint { font-size: 14px; font-weight: 600; } */
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  display: grid;
+  place-items: center;
+}
+
+.swipe-hint {
+  font-size: 14px;
+  font-weight: 600;
+}
 
 /* ---------- PASSCODE ---------- */
+
 #passcodeView {
   background: transparent;
   isolation: isolate;
@@ -772,170 +482,655 @@ button {
   font-weight: 700;
 }
 
-.dots { position: absolute; top: 168px; width: 100%; display: flex; justify-content: center; gap: 16px; }
-.dot { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #fff; transition: background .12s; }
-.dot.filled { background: #fff; }
-.keypad { position: absolute; top: 235px; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: repeat(3, 78px); gap: 14px 24px; }
-.key {
-  width: 78px; height: 78px; border: 0; border-radius: 50%; background: #ffffff2e; color: #fff;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1;
-}
-.key span { font-size: 32px; font-weight: 300; }
-.key small { font-size: 9px; font-weight: 700; letter-spacing: 2px; margin-top: 3px; min-height: 9px; }
-.key:active { background: #ffffff66; }
-.key.zero { grid-column: 2; }
-.pc-actions { position: absolute; left: 34px; right: 34px; bottom: 44px; display: flex; justify-content: space-between; }
-.pc-actions button { border: 0; background: none; color: #fff; font-size: 16px; font-weight: 600; }
-.shake { animation: shake .4s; }
-@keyframes shake { 20%, 60% { transform: translateX(-10px); } 40%, 80% { transform: translateX(10px); } }
-
-/* ---------- iPHONE HOME SCREEN POLISH ---------- */
-.photo-widget { border: 0; padding: 0; }
-.weekday { font-size: 13px; }
-.calendar-widget p { border-left: 3px solid #b45ce0; padding-left: 6px; }
-.app-icon, .dock-icon { border-radius: 22.5%; }
-.app { font-size: 11px; font-weight: 500; }
-.notes-icon { padding-top: 16px; }
-.messages-icon, .phone-icon, .message-icon { background: linear-gradient(#6fdc78, #30b94b); }
-.mail-icon { background: linear-gradient(#5bb8ff, #1a6cf0); }
-.page-dots { position: absolute; bottom: 118px; left: 0; right: 0; display: flex; justify-content: center; gap: 8px; }
-.page-dots i { width: 7px; height: 7px; border-radius: 50%; background: #ffffff66; }
-.page-dots i.on { background: #fff; }
-
-/* ---------- KAKAOTALK ---------- */
-.screen[data-view="kakaoList"] .status-bar,
-.screen[data-view="kakaoChat"] .status-bar { color: #111; }
-.dock-icon { position: relative; }
-.badge { position: absolute; top: -8px; right: -8px; background: #f04f3f; color: #fff; font-size: 12px; font-weight: 700; border-radius: 10px; padding: 1px 6px; }
-.kakao-icon { background: #fae100; }
-
-.k-screen { background: #fff; color: #111; }
-.k-head { position: absolute; top: 54px; left: 0; right: 0; height: 48px; padding: 0 16px; display: flex; align-items: center; gap: 8px; }
-.k-head h2 { margin: 0; flex: 1; font-size: 22px; font-weight: 800; }
-.k-back { border: 0; background: none; color: #111; font-size: 28px; padding: 0; }
-.k-icons { letter-spacing: 12px; font-size: 18px; }
-.k-pills { position: absolute; top: 108px; left: 16px; display: flex; gap: 8px; }
-.k-pills span { padding: 8px 14px; border-radius: 18px; border: 1px solid #e2e2e2; font-size: 13px; font-weight: 600; }
-.k-pills .on { background: #111; color: #fff; border-color: #111; }
-.k-pills b { background: #f2683c; color: #fff; border-radius: 9px; padding: 1px 6px; font-size: 11px; margin-left: 5px; }
-.k-rows { position: absolute; top: 154px; bottom: 78px; left: 0; right: 0; overflow-y: auto; }
-.k-chatrow { width: 100%; display: flex; gap: 12px; padding: 10px 16px; border: 0; background: #fff; text-align: left; color: #111; }
-.k-av { flex-shrink: 0; width: 46px; height: 46px; border-radius: 18px; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 17px; }
-.k-mid { flex: 1; min-width: 0; }
-.k-nm { display: block; font-size: 15px; font-weight: 700; }
-.k-pv { display: block; margin-top: 3px; color: #8b8b8b; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.k-side { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; font-size: 11px; color: #999; }
-.k-un { background: #f2683c; color: #fff; border-radius: 10px; padding: 1px 7px; font-size: 12px; font-weight: 700; }
-.k-tabs { position: absolute; bottom: 0; left: 0; right: 0; height: 78px; padding-top: 10px; background: #fff; border-top: 1px solid #eee; display: flex; justify-content: space-around; font-size: 20px; filter: grayscale(1); opacity: .7; }
-
-.kakao { background: #b9c6d8; }
-.k-chat-head { position: absolute; top: 54px; left: 0; right: 0; height: 48px; padding: 0 14px; display: flex; align-items: center; justify-content: space-between; }
-.k-back-pill { border: 0; border-radius: 18px; background: #fff; padding: 6px 12px; font-size: 16px; font-weight: 600; color: #111; }
-.k-chat-head strong { font-size: 17px; }
-.k-msgs { position: absolute; top: 108px; bottom: 78px; left: 0; right: 0; padding: 8px 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
-.k-date { align-self: center; background: #7e8da3a0; color: #fff; border-radius: 12px; padding: 4px 12px; font-size: 11px; font-weight: 600; margin: 6px 0; }
-.k-row { display: flex; gap: 8px; }
-.k-row.out { justify-content: flex-end; }
-.k-col { display: flex; flex-direction: column; gap: 3px; }
-.k-line { display: flex; align-items: flex-end; gap: 5px; }
-.k-row .k-av { width: 38px; height: 38px; border-radius: 14px; font-size: 14px; }
-.k-av.ghost { visibility: hidden; }
-.k-who { font-size: 12px; color: #333; }
-.k-b { max-width: 200px; padding: 9px 12px; border-radius: 16px; font-size: 14px; line-height: 1.35; overflow-wrap: anywhere; background: #fff; }
-.out .k-b { background: #fae54a; }
-.k-time { font-size: 10px; color: #56657a; white-space: nowrap; }
-.k-input { position: absolute; left: 0; right: 0; bottom: 0; height: 78px; padding: 10px 10px 0; display: flex; align-items: flex-start; gap: 8px; background: #fff; }
-.k-plus { width: 34px; height: 34px; border: 0; border-radius: 50%; background: #eee; font-size: 22px; color: #555; }
-.k-field { flex: 1; min-height: 34px; padding: 8px 14px; border-radius: 18px; background: #f1f2f4; color: #999; font-size: 14px; }
-.k-field.has { color: #111; }
-.k-send { border: 0; border-radius: 18px; background: #fae54a; color: #111; font-weight: 700; padding: 0 14px; height: 34px; }
-.k-keyboard { position: absolute; left: 0; right: 0; bottom: 0; height: 260px; padding: 10px 4px; background: #d2d4da; display: flex; flex-direction: column; gap: 10px; transform: translateY(100%); transition: transform .3s; z-index: 25; }
-.k-krow { display: flex; justify-content: center; gap: 5px; }
-.k-key { flex: 1; max-width: 34px; height: 42px; border: 0; border-radius: 6px; background: #fff; color: #111; font-size: 18px; box-shadow: 0 1px 0 #0003; }
-.k-key.wide { max-width: none; flex: 5; font-size: 14px; }
-.kb .k-keyboard { transform: none; }
-.kb .k-input { bottom: 260px; height: 52px; }
-.kb .k-msgs { bottom: 312px; }
-
-/* ---------- LOCK + HOME COLORS (light wallpaper) ---------- */
-:root { --lock-text: #f7f7f7; }                 /* change this one color to restyle the lock text */
-.screen[data-view="lock"] .status-bar,
-.screen[data-view="home"] .status-bar { color: var(--lock-text); }
-.lock-date, .lock-time { color: var(--lock-text); }
-.lock-time { opacity: .9; }
-.swipe-hint { color: #fff; text-shadow: 0 1px 6px #0009; }
-.app { text-shadow: 0 1px 4px #000a; }
-/*#passcodeView { background: rgba(0,0,0,.55); }
-
-/* ---------- iOS NOTIFICATION ----------
-.notification {
-  padding: 11px 12px;
-  gap: 11px;
-  border-radius: 24px;
-  color: #111;
-  background: rgba(255,255,255,.08);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
-  backdrop-filter: blur(12px) saturate(150%);
-  border: 1px solid rgba(255,255,255,.15);
-  box-shadow: 0 4px 24px rgba(0,0,0,.08);
-}
-.n-icon { width: 38px; height: 38px; border-radius: 9px; background: linear-gradient(#6fdc78, #30b94b); }
-.n-text b { font-size: 15px; font-weight: 600; }
-.n-text span { color: #2c2c2e; font-size: 14px; }
-.notification small { color: #6b6b70; opacity: 1; }
-.round-btn { background: rgba(40,40,44,.55); color: #fff; }
-.dark-indicator { cursor: pointer; }
-
-/* ---------- PHOTOS (GALLERY) ---------- */
-.screen[data-view="gallery"] .status-bar,
-.screen[data-view="photo"] .status-bar { color: #111; }
-.g-screen { background: #fff; color: #111; }
-.g-head { position: absolute; top: 54px; left: 0; right: 0; height: 52px; padding: 0 14px; display: flex; align-items: center; gap: 10px; }
-.g-head h2 { margin: 0; flex: 1; font-size: 28px; font-weight: 800; }
-.g-back { border: 0; background: none; color: #0a84ff; font-size: 30px; padding: 0; }
-.g-select { border: 0; border-radius: 16px; background: #eeeef0; color: #0a84ff; font-weight: 600; font-size: 14px; padding: 7px 14px; }
-.g-grid { position: absolute; top: 112px; bottom: 82px; left: 0; right: 0; overflow-y: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; align-content: start; }
-.g-cell { aspect-ratio: 1; border: 0; padding: 0; background: #eee; }
-.g-cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.g-count { grid-column: 1 / -1; text-align: center; color: #8a8a8e; font-size: 13px; padding: 14px; }
-.g-tabs { position: absolute; bottom: 0; left: 0; right: 0; height: 78px; padding-top: 10px; background: #f7f7f8; border-top: 1px solid #e3e3e6; display: flex; justify-content: space-around; font-size: 11px; color: #8a8a8e; }
-.g-tabs span { display: flex; flex-direction: column; align-items: center; gap: 3px; }
-.g-tabs i { font-style: normal; font-size: 20px; }
-.g-tabs .on { color: #0a84ff; }
-.g-view-head { position: absolute; top: 54px; left: 0; right: 0; height: 48px; padding: 0 14px; display: flex; align-items: center; justify-content: space-between; }
-.g-view-head strong { font-size: 15px; }
-.g-view-head span { width: 20px; }
-#gImg { position: absolute; top: 108px; bottom: 90px; left: 0; width: 100%; object-fit: contain; }
-.g-bar { position: absolute; bottom: 30px; left: 0; right: 0; display: flex; justify-content: space-around; color: #0a84ff; font-size: 22px; }
-
-/* ---------- LOCK SCREEN NOTIFICATION STACK ---------- */
-
-.notifications-stack {
+.dots {
   position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: 128px;
+  top: 168px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
 
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid #fff;
+  transition: background .12s;
+}
+
+.dot.filled {
+  background: #fff;
+}
+
+.keypad {
+  position: absolute;
+  top: 235px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(3, 78px);
+  gap: 14px 24px;
+}
+
+.key {
+  width: 78px;
+  height: 78px;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff2e;
+  color: #fff;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-
-  z-index: 5;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
+
+.key span {
+  font-size: 32px;
+  font-weight: 300;
+}
+
+.key small {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-top: 3px;
+  min-height: 9px;
+}
+
+.key:active {
+  background: #ffffff66;
+}
+
+.key.zero {
+  grid-column: 2;
+}
+
+.pc-actions {
+  position: absolute;
+  left: 34px;
+  right: 34px;
+  bottom: 44px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pc-actions button {
+  border: 0;
+  background: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.shake {
+  animation: shake .4s;
+}
+
+@keyframes shake {
+  20%, 60% { transform: translateX(-10px); }
+  40%, 80% { transform: translateX(10px); }
+}
+
+/* ---------- iPHONE HOME SCREEN POLISH ---------- */
+
+.photo-widget {
+  border: 0;
+  padding: 0;
+}
+
+.weekday {
+  font-size: 13px;
+}
+
+.calendar-widget p {
+  border-left: 3px solid #b45ce0;
+  padding-left: 6px;
+}
+
+.app-icon,
+.dock-icon {
+  border-radius: 22.5%;
+}
+
+.app {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.notes-icon {
+  padding-top: 16px;
+}
+
+.phone-icon,
+.message-icon {
+  background: linear-gradient(#6fdc78, #30b94b);
+}
+
+.page-dots {
+  position: absolute;
+  bottom: 118px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.page-dots i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffffff66;
+}
+
+.page-dots i.on {
+  background: #fff;
+}
+
+/* ---------- KAKAOTALK ---------- */
+
+.screen[data-view="kakaoList"] .status-bar,
+.screen[data-view="kakaoChat"] .status-bar {
+  color: #111;
+}
+
+.dock-icon {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #f04f3f;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 1px 6px;
+}
+
+.kakao-icon {
+  background: #fae100;
+}
+
+.k-screen {
+  background: #fff;
+  color: #111;
+}
+
+.k-head {
+  position: absolute;
+  top: 54px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.k-head h2 {
+  margin: 0;
+  flex: 1;
+}
+
+.k-back {
+  color: #111;
+  font-size: 28px;
+}
+
+.k-icons {
+  font-size: 18px;
+}
+
+.k-pills {
+  position: absolute;
+}
+
+.k-pills span {
+  padding: 8px 14px;
+  border-radius: 18px;
+  border: 1px solid #e2e2e2;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.k-pills .on {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.k-pills b {
+  margin-left: 5px;
+}
+
+.k-nm {
+  display: block;
+}
+
+.k-pv {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.k-side {
+  font-size: 11px;
+  color: #999;
+}
+
+.k-tabs {
+  padding-top: 10px;
+  justify-content: space-around;
+  font-size: 20px;
+}
+
+.kakao {
+  background: #b9c6d8;
+}
+
+.k-chat-head {
+  position: absolute;
+  top: 54px;
+  left: 0;
+  right: 0;
+  height: 48px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.k-back-pill {
+  border: 0;
+  border-radius: 18px;
+  background: #fff;
+  padding: 6px 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+}
+
+.k-chat-head strong {
+  font-size: 17px;
+}
+
+.k-msgs {
+  position: absolute;
+  top: 108px;
+  bottom: 78px;
+  left: 0;
+  right: 0;
+  padding: 8px 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.k-date {
+  align-self: center;
+  background: #7e8da3a0;
+  color: #fff;
+  border-radius: 12px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  margin: 6px 0;
+}
+
+.k-row {
+  display: flex;
+  gap: 8px;
+}
+
+.k-row.out {
+  justify-content: flex-end;
+}
+
+.k-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.k-line {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.k-row .k-av {
+  width: 38px;
+  height: 38px;
+  border-radius: 14px;
+  font-size: 14px;
+}
+
+.k-av.ghost {
+  visibility: hidden;
+}
+
+.k-who {
+  font-size: 12px;
+  color: #333;
+}
+
+.k-b {
+  max-width: 200px;
+  padding: 9px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  background: #fff;
+}
+
+.out .k-b {
+  background: #fae54a;
+}
+
+.k-time {
+  font-size: 10px;
+  color: #56657a;
+  white-space: nowrap;
+}
+
+.k-input {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 78px;
+  padding: 10px 10px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: #fff;
+}
+
+.k-plus {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: #eee;
+  font-size: 22px;
+  color: #555;
+}
+
+.k-field {
+  flex: 1;
+  min-height: 34px;
+  padding: 8px 14px;
+  border-radius: 18px;
+  background: #f1f2f4;
+  color: #999;
+  font-size: 14px;
+}
+
+.k-field.has {
+  color: #111;
+}
+
+.k-send {
+  border: 0;
+  border-radius: 18px;
+  background: #fae54a;
+  color: #111;
+  font-weight: 700;
+  padding: 0 14px;
+  height: 34px;
+}
+
+.k-keyboard {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 260px;
+  padding: 10px 4px;
+  background: #d2d4da;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transform: translateY(100%);
+  transition: transform .3s;
+  z-index: 25;
+}
+
+.k-krow {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.k-key {
+  flex: 1;
+  max-width: 34px;
+  height: 42px;
+  border: 0;
+  border-radius: 6px;
+  background: #fff;
+  color: #111;
+  font-size: 18px;
+  box-shadow: 0 1px 0 #0003;
+}
+
+.k-key.wide {
+  max-width: none;
+  flex: 5;
+  font-size: 14px;
+}
+
+.kb .k-keyboard {
+  transform: none;
+}
+
+.kb .k-input {
+  bottom: 260px;
+  height: 52px;
+}
+
+.kb .k-msgs {
+  bottom: 312px;
+}
+
+/* ---------- LOCK + HOME COLORS ---------- */
+
+:root {
+  --lock-text: #000000; /*change to white if needed*/
+}
+
+.screen[data-view="lock"] .status-bar {
+  color: var(--lock-text);
+}
+
+.lock-date,
+.lock-time {
+  color: var(--lock-text);
+}
+
+.lock-time {
+  opacity: .9;
+}
+
+.swipe-hint {
+  color: #000000; /*change to white if needed*/
+  text-shadow: none; /*change text-shadow: 0 1px 6px #0009;*/
+}
+
+.app {
+  text-shadow: 0 1px 4px #000a;
+}
+
+/* ---------- PHOTOS (GALLERY) ---------- */
+
+.screen[data-view="gallery"] .status-bar,
+.screen[data-view="photo"] .status-bar {
+  color: #111;
+}
+
+.g-screen {
+  background: #fff;
+  color: #111;
+}
+
+.g-head {
+  position: absolute;
+  top: 54px;
+  left: 0;
+  right: 0;
+  height: 52px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.g-head h2 {
+  margin: 0;
+  flex: 1;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.g-back {
+  border: 0;
+  background: none;
+  color: #0a84ff;
+  font-size: 30px;
+  padding: 0;
+}
+
+.g-select {
+  border: 0;
+  border-radius: 16px;
+  background: #eeeef0;
+  color: #0a84ff;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 7px 14px;
+}
+
+.g-grid {
+  position: absolute;
+  top: 112px;
+  bottom: 82px;
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  align-content: start;
+}
+
+.g-cell {
+  aspect-ratio: 1;
+  border: 0;
+  padding: 0;
+  background: #eee;
+}
+
+.g-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.g-count {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #8a8a8e;
+  font-size: 13px;
+  padding: 14px;
+}
+
+.g-tabs {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 78px;
+  padding-top: 10px;
+  background: #f7f7f8;
+  border-top: 1px solid #e3e3e6;
+  display: flex;
+  justify-content: space-around;
+  font-size: 11px;
+  color: #8a8a8e;
+}
+
+.g-tabs span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.g-tabs i {
+  font-style: normal;
+  font-size: 20px;
+}
+
+.g-tabs .on {
+  color: #0a84ff;
+}
+
+.g-view-head {
+  position: absolute;
+  top: 54px;
+  left: 0;
+  right: 0;
+  height: 48px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.g-view-head strong {
+  font-size: 15px;
+}
+
+.g-view-head span {
+  width: 20px;
+}
+
+#gImg {
+  position: absolute;
+  top: 108px;
+  bottom: 90px;
+  left: 0;
+  width: 100%;
+  object-fit: contain;
+}
+
+.g-bar {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  color: #0a84ff;
+  font-size: 22px;
+}
+
+/* ---------- LOCK SCREEN NOTIFICATION STACK ---------- */
 
 .notifications-stack .notification {
   position: relative;
   left: auto;
   right: auto;
   bottom: auto;
-
   width: 100%;
   box-sizing: border-box;
-}
-
-/* Different app icon color */
-.message-notif-icon {
-  background: linear-gradient(#67e27f, #28b946);
 }
 
 /* ---------- LOCK SCREEN NOTIFICATIONS ---------- */
@@ -951,7 +1146,6 @@ button {
   z-index: 5;
 }
 
-/* Override the original absolute positioning */
 .notifications-stack > .notification {
   position: relative;
   left: auto;
@@ -961,40 +1155,30 @@ button {
   box-sizing: border-box;
 }
 
-/* PHONE NOTIFICATION */
+/* ---------- PHONE NOTIFICATION ---------- */
+
 .phone-notification {
-  display: flex;
   align-items: center;
 }
 
-/* MESSAGES NOTIFICATION */
+/* ---------- MESSAGES NOTIFICATION ---------- */
+
 .messages-notification {
   display: block;
-  padding: 12px 13px 15px;
-  border-radius: 24px;
 }
 
-/* Header: icon + MESSAGES + now */
 .message-notif-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
 }
 
 .message-notif-app {
   display: flex;
   align-items: center;
-  gap: 10px;
   color: #555;
-  font-size: 12px;
   font-weight: 400;
   letter-spacing: .4px;
-}
-
-.message-notif-app .n-icon {
-  width: 32px;
-  height: 32px;
 }
 
 .message-notif-header small {
@@ -1002,23 +1186,17 @@ button {
   font-size: 12px;
 }
 
-/* Sender name + message */
 .message-notif-content {
-  padding-left: 42px;
   color: #171719;
 }
 
 .message-notif-content b {
   display: block;
-  font-size: 17px;
   font-weight: 700;
-  margin-bottom: 4px;
 }
 
 .message-notif-content p {
   margin: 0;
-  font-size: 16px;
-  line-height: 1.35;
   color: #29292b;
 }
 
@@ -1029,22 +1207,14 @@ button {
   border-radius: 21px;
 }
 
-/* App icon and MESSAGES header */
 .message-notif-header {
   margin-bottom: 7px;
 }
 
-.message-notif-app .n-icon {
-  width: 28px;
-  height: 28px;
-}
-
 .message-notif-app {
-  gap: 8px;
   font-size: 11px;
 }
 
-/* Sender and message */
 .message-notif-content {
   padding-left: 0px;
 }
@@ -1059,7 +1229,6 @@ button {
   line-height: 1.25;
 }
 
-/* Smaller Messages notification icon */
 .message-notif-app .n-icon {
   width: 24px;
   height: 24px;
@@ -1075,7 +1244,7 @@ button {
   gap: 8px;
 }
 
-/* PHONE NOTIFICATION - IOS STYLE */
+/* ---------- PHONE NOTIFICATION - IOS STYLE ---------- */
 
 .phone-notification {
   display: block;
@@ -1127,190 +1296,333 @@ button {
   line-height: 1.25;
 }
 
+/* ---------- MOTION (iOS-style) ---------- */
 
-/* ---------- KAKAOTALK MAIL-STYLE INBOX ---------- */
+.status-bar {
+  transition: color .35s ease;
+}
+
+.notification {
+  opacity: 0;
+}
+
+.notification.in {
+  animation: notifIn .75s cubic-bezier(.2,.9,.25,1.08) var(--delay, .6s) both;
+}
+
+@keyframes notifIn {
+  from { opacity: 0; transform: translateY(-46px) scale(.93); }
+  to { opacity: 1; transform: none; }
+}
+
+.app-icon,
+.dock-icon {
+  transition: transform .2s ease, filter .2s ease;
+}
+
+.app:active .app-icon,
+.dock-icon:active {
+  transform: scale(.9);
+  filter: brightness(.85);
+}
+
+.key {
+  transition: background .4s ease;
+}
+
+.key:active {
+  transition: none;
+}
+
+.k-chatrow {
+  transition: background .25s ease;
+}
+
+.g-cell {
+  transition: opacity .2s ease;
+}
+
+.g-cell:active {
+  opacity: .7;
+}
+
+.home-indicator::before {
+  content: "";
+  position: absolute;
+  inset: -14px -30px -8px;
+}
+
+.dark-indicator {
+  cursor: pointer;
+}
+
+/* ---------- HOME SCREEN ---------- */
+
+.widgets {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.app-icon {
+  position: relative;
+}
+
+.app-icon .badge {
+  top: -6px;
+  right: -6px;
+}
+
+.x-icon {
+  background: #000;
+}
+
+.photos-dock {
+  background: #fff;
+}
+
+button[data-app]:not([data-app="Kakao"]):not([data-app="Photos"]) {
+  cursor: default;
+}
+
+/* ---------- KAKAOTALK INBOX ---------- */
 
 #kakaoList {
   background: #fff;
-  color: #222;
 }
 
-#kakaoList .k-head {
-  top: 48px;
-  height: 55px;
-  padding: 0 16px;
-  gap: 10px;
-  background: #fff;
+.k-head {
+  height: 52px;
+  padding: 0 18px 0 14px;
 }
 
-#kakaoList .k-back {
-  color: #222;
-  font-size: 30px;
+.k-head h2 {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -.5px;
+}
+
+.k-back {
+  display: grid;
+  place-items: center;
   width: 28px;
-}
-
-#kakaoList .k-head h2 {
-  flex: 1;
-  font-size: 22px;
-  font-weight: 650;
-  letter-spacing: -1px;
-}
-
-.k-head-actions {
-  display: flex;
-  align-items: center;
-  gap: 19px;
-}
-
-.k-head-actions button {
+  height: 36px;
   border: 0;
   background: none;
-  color: #222;
-  font-size: 24px;
   padding: 0;
 }
 
-#kakaoList .k-pills {
-  top: 103px;
+.k-icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  letter-spacing: 0;
+}
+
+.k-icons button {
+  border: 0;
+  background: none;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
+.k-pills {
+  top: 114px;
+  left: 18px;
+  display: flex;
+  gap: 8px;
+}
+
+.k-pills button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #e4e4e7;
+  background: #fff;
+  color: #111;
+  border-radius: 20px;
+  padding: 9px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background .25s, color .25s;
+}
+
+.k-pills button.on {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+}
+
+.k-pills b {
+  margin: 0;
+  background: #f2683c;
+  color: #fff;
+  border-radius: 9px;
+  padding: 1px 6px;
+  font-size: 11px;
+}
+
+.k-rows {
+  position: absolute;
+  top: 172px;
+  bottom: 84px;
   left: 0;
   right: 0;
-  height: 48px;
-  display: flex;
-  justify-content: space-around;
-  gap: 0;
-  border-bottom: 1px solid #eee;
-}
-
-#kakaoList .k-pills span {
-  padding: 12px 7px;
-  border: 0;
-  border-radius: 0;
-  color: #aaa;
-  font-size: 13px;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-#kakaoList .k-pills span.on {
-  color: #222;
-  background: none;
-  border-bottom: 2px solid #222;
-}
-
-#kakaoList .k-rows {
-  top: 151px;
-  bottom: 65px;
   overflow-y: auto;
-  background: #fff;
+  padding-top: 4px;
 }
 
-#kakaoList .k-chatrow {
-  min-height: 94px;
-  padding: 13px 17px;
-  gap: 13px;
-  align-items: center;
-  background: #fff;
-  color: #222;
-}
-
-#kakaoList .k-av {
-  width: 49px;
-  height: 49px;
-  border-radius: 17px;
-  font-size: 19px;
-}
-
-#kakaoList .k-mid {
+.k-chatrow {
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 18px;
+  border: 0;
+  background: #fff;
+  text-align: left;
+  color: #111;
+}
+
+.k-chatrow:active {
+  background: #f4f4f5;
+}
+
+.k-av {
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+  border-radius: 21px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.k-mid {
+  flex: 1;
+  min-width: 0;
+}
+
+.k-top {
+  display: flex;
+  align-items: center;
   gap: 6px;
 }
 
-#kakaoList .k-nm {
-  font-size: 17px;
-  font-weight: 650;
-  color: #292929;
+.k-nm {
+  font-size: 16px;
+  font-weight: 700;
 }
 
-#kakaoList .k-pv {
-  margin: 0;
+.k-mem {
+  color: #a0a0a6;
   font-size: 13px;
-  color: #777;
 }
 
-#kakaoList .k-side {
-  align-self: stretch;
-  justify-content: space-between;
+.k-pv {
+  margin-top: 4px;
+  color: #8b8b92;
+  font-size: 14px;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.k-side {
+  display: flex;
+  flex-direction: column;
   align-items: flex-end;
-  gap: 4px;
-  font-size: 11px;
-  color: #aaa;
+  gap: 7px;
+  padding-top: 2px;
 }
 
-#kakaoList .k-time {
-  font-size: 11px;
-  color: #aaa;
-  white-space: nowrap;
+.k-tm {
+  font-size: 12px;
+  color: #a0a0a6;
 }
 
-#kakaoList .k-star {
-  font-size: 22px;
-  line-height: 1;
-  color: #ccc;
-  font-weight: 300;
-}
-
-#kakaoList .k-un {
-  font-size: 10px;
-  padding: 2px 6px;
+.k-un {
+  min-width: 22px;
+  text-align: center;
+  background: #f2683c;
+  color: #fff;
   border-radius: 10px;
-  background: #fae100;
-  color: #333;
+  padding: 1px 7px;
+  font-size: 12px;
+  font-weight: 700;
 }
 
-.k-account {
+.k-empty {
+  text-align: center;
+  color: #a0a0a6;
+  padding: 60px 0;
+  font-size: 14px;
+}
+
+.k-tabs {
   position: absolute;
-  bottom: 0;
   left: 0;
   right: 0;
-  height: 65px;
+  bottom: 0;
+  height: 84px;
+  padding: 12px 8px 0;
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
+  border-top: 1px solid #eee;
+  filter: none;
+  opacity: 1;
+}
+
+.k-tabs span {
+  position: relative;
+  flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 9px;
-  background: #f8f8f8;
-  border-top: 1px solid #eee;
-  border-radius: 18px 18px 0 0;
-  color: #333;
-  font-size: 14px;
-  z-index: 10;
 }
 
-.k-account-avatar {
-  width: 28px;
-  height: 28px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #fae100;
-  font-size: 17px;
+.k-tabs svg {
+  width: 27px;
+  height: 27px;
 }
 
-.k-compose {
+.k-tabs b {
   position: absolute;
-  z-index: 12;
-  right: 15px;
-  bottom: 61px;
-  width: 65px;
-  height: 65px;
-  border: 0;
-  border-radius: 50%;
-  background: #fae100;
-  color: #222;
-  font-size: 30px;
-  box-shadow: 0 3px 12px #0002;
+  top: -6px;
+  left: calc(50% + 6px);
+  background: #f2683c;
+  color: #fff;
+  border-radius: 10px;
+  padding: 1px 6px;
+  font-size: 11px;
 }
 
-#kakaoList .home-indicator {
-  z-index: 15;
+/* ---------- GALLERY: grouped by date ---------- */
+
+.g-day {
+  grid-column: 1 / -1;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: rgba(255,255,255,.94);
+  padding: 14px 14px 6px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+}
+
+.g-cell {
+  position: relative;
+  overflow: hidden;
+}
+
+.g-cell.missing {
+  background: #e9e9ec;
+}
+
+.g-cell.missing img {
+  display: none;
 }

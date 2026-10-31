@@ -1,5 +1,63 @@
-
 const $ = (selector) => document.querySelector(selector);
+
+// =====================================================
+//  YOUR STORY - edit this part
+// =====================================================
+
+// ---- phone settings ----
+const STORY = {
+  time: "12:26",                  // fixed story time; use "" to show the real time
+  date: "Wednesday, 28 October",
+  passcode: "021199"
+};
+
+// ---- KakaoTalk chats ----
+// "history" = messages already in the chat. "script" = what happens next, in order:
+// ["in", text, time] arrives by itself, ["out", text, time] is YOUR reply (typed on the fake keyboard).
+const KAKAO = [
+  { name: "Wonwoo", initial: "W", color: "#8aa4d6", unread: 2,
+    history: [
+      ["in", "hey, are you free later?", "9:58 AM"],
+      ["out", "maybe. why?", "10:02 AM"],
+      ["in", "i don't remember much about last night", "10:40 AM"],
+      ["in", "if i said something strange, please tell me", "10:40 AM"]
+    ],
+    script: [
+      ["out", "it wasn't a strange thing to say.", "10:42 AM"],
+      ["in", "...really?", "10:43 AM"],
+      ["in", "okay. thank you for telling me", "10:43 AM"],
+      ["out", "anytime.", "10:44 AM"]
+    ] },
+  { name: "Jihoon hyung", initial: "J", color: "#e8a0b4", unread: 1,
+    history: [["in", "oy bati na kayo ni wons?", "11:42 PM"]], script: [] },
+  { name: "sebong", initial: "✦", color: "#9a8fe0", unread: 1, members: 13,
+    history: [
+      ["in", "HANSOL ANG MGA PARCEL MO", "9:36 PM"],
+      ["in", "nagluto ako chicken", "9:36 PM"],
+      ["in", "channie san ka, punta ka dito kwarto", "9:37 PM"],
+    ],
+    script: [
+      ["out", "oks hyung wait", "9:38 PM"],
+    ] },
+  { name: "Seokmin hyung", initial: "S", color: "#f2b36d", unread: 1,
+    history: [["in", "send photos sa cam pls onid!!", "5:41 PM"]], script: [] }
+];
+
+// ---- Photos (gallery) ----
+// day("date", ["file", ...]) adds photos from the images/ folder to that date.
+// For a sub-folder write "gallery/photo1.jpg". Photos are grouped by date, newest day first.
+const day = (date, files) => files.map(f => ({ src: "images/" + f, date }));
+
+const GALLERY = [
+  ...day("2026-10-30", ["gallery4.png", "gallery5.png"]),
+  ...day("2026-10-28", ["gallery1.png", "gallery2.png"]),
+  ...day("2026-10-07", ["gallery3.png"]),
+  // ...day("2026-10-04", ["gallery/photo1.jpg", "gallery/photo2.jpg"]),
+];
+
+// =====================================================
+//  CODE - you don't need to edit below this line
+// =====================================================
 
 const views = {
   gallery: $("#galleryView"),
@@ -9,9 +67,6 @@ const views = {
   lock: $("#lockView"),
   passcode: $("#passcodeView"),
   home: $("#homeView"),
-  messages: $("#messagesView"),
-  chat: $("#chatView"),
-  other: $("#otherView")
 };
 
 const phone = document.querySelector(".phone");
@@ -28,156 +83,81 @@ function fitPhone() {
 fitPhone();
 window.addEventListener("resize", fitPhone);
 
-const people = [
-  {
-    name: "Chan",
-    initial: "C",
-    color: "",
-    time: "now",
-    preview: "you: okay, see you later!",
-    messages: [
-      ["in", "are you home yet?"],
-      ["out", "not yet, why?"],
-      ["in", "nothing. just wanted to hear from you lol"],
-      ["out", "you could've just said that 😭"],
-      ["in", "okay, i wanted to hear from you. happy?"],
-      ["out", "a little."]
-    ]
-  },
-  {
-    name: "Wonwoo",
-    initial: "W",
-    color: "pink",
-    time: "9:18 AM",
-    preview: "don't forget to eat, okay?",
-    messages: [
-      ["in", "good morning"],
-      ["in", "don't forget to eat, okay?"],
-      ["out", "you sound like my mom"],
-      ["in", "your mom has good advice"]
-    ]
-  },
-  {
-    name: "The Problem Children",
-    initial: "✦",
-    color: "purple",
-    time: "Yesterday",
-    preview: "WHO SENT THAT SCREENSHOT",
-    messages: [
-      ["in", "guys"],
-      ["in", "WHO SENT THAT SCREENSHOT"],
-      ["out", "what screenshot"],
-      ["in", "do not act innocent 😭"]
-    ]
-  },
-  {
-    name: "Mika",
-    initial: "M",
-    color: "orange",
-    time: "Tuesday",
-    preview: "send me the pictures pls!!",
-    messages: [
-      ["in", "send me the pictures pls!!"],
-      ["out", "wait im choosing the least embarrassing ones"],
-      ["in", "so none?"]
-    ]
+// ---------- iOS-STYLE SCREEN TRANSITIONS ----------
+const EASE = "cubic-bezier(.32,.72,0,1)";     // smooth ease in/out, like iOS
+const APPS = ["kakaoList", "kakaoChat", "gallery", "photo"];
+let currentView = "lock", cleanup = null, iconOrigin = "50% 50%";
+
+function setOrigin(btn) {                      // remember where the tapped icon is
+  const s = $("#screen").getBoundingClientRect(), r = btn.getBoundingClientRect();
+  const x = (r.left + r.width / 2 - s.left) / s.width * 100;
+  const y = (r.top + r.height / 2 - s.top) / s.height * 100;
+  iconOrigin = x + "% " + y + "%";
+}
+
+function showView(name) {
+  const to = views[name], from = views[currentView], prev = currentView;
+  if (cleanup) cleanup();
+  $("#screen").dataset.view = name;
+  if (from === to) return;
+  currentView = name;
+
+  let kind = "fade";
+  if (prev === "home" && (name === "kakaoList" || name === "gallery")) kind = "open";
+  else if (APPS.includes(prev) && name === "home") kind = "close";
+  else if (prev === "lock" && name === "passcode") kind = "lockup";
+  else if (prev === "passcode" && name === "home") kind = "unlock";
+  else if ((prev === "kakaoList" && name === "kakaoChat") || (prev === "gallery" && name === "photo")) kind = "push";
+  else if ((prev === "kakaoChat" && name === "kakaoList") || (prev === "photo" && name === "gallery")) kind = "pop";
+
+  to.classList.add("active");
+  const origin = (kind === "open" || kind === "close") ? iconOrigin : "50% 50%";
+  const anims = [];
+  const go = (v, frames, opts) => anims.push(v.animate(frames, { duration: 420, easing: EASE, fill: "both", ...opts }));
+  let top = to;
+
+  if (kind === "open") {
+    go(to, [{ transform: "scale(.14)", opacity: 0, borderRadius: "220px" }, { opacity: 1, offset: .4 }, { transform: "scale(1)", opacity: 1, borderRadius: "0px" }], { duration: 460 });
+    go(from, [{ transform: "scale(1)", opacity: 1 }, { transform: "scale(1.1)", opacity: 0 }], { duration: 460 });
+  } else if (kind === "close") {
+    top = from;
+    go(from, [{ transform: "scale(1)", opacity: 1, borderRadius: "0px" }, { opacity: 1, offset: .6 }, { transform: "scale(.14)", opacity: 0, borderRadius: "220px" }], { duration: 420 });
+    go(to, [{ transform: "scale(1.1)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }], { duration: 420 });
+  } else if (kind === "lockup") {
+    top = from;
+    go(from, [{ transform: "none", opacity: 1 }, { transform: "translateY(-5%) scale(.96)", opacity: 0 }], { duration: 380 });
+    go(to, [{ transform: "scale(1.05)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }], { duration: 380 });
+  } else if (kind === "unlock") {
+    go(to, [{ transform: "scale(1.15)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }], { duration: 520 });
+    go(from, [{ opacity: 1 }, { opacity: 0 }], { duration: 300 });
+  } else if (kind === "push") {
+    go(to, [{ transform: "translateX(100%)" }, { transform: "translateX(0)" }]);
+    go(from, [{ transform: "translateX(0)" }, { transform: "translateX(-28%)" }]);
+  } else if (kind === "pop") {
+    top = from;
+    go(from, [{ transform: "translateX(0)" }, { transform: "translateX(100%)" }]);
+    go(to, [{ transform: "translateX(-28%)" }, { transform: "translateX(0)" }]);
+  } else {
+    go(to, [{ opacity: 0 }, { opacity: 1 }], { duration: 280 });
+    go(from, [{ opacity: 1 }, { opacity: 0 }], { duration: 280 });
   }
-];
 
-let activePerson = people[0];
-
-function showView(viewName) {
-  Object.values(views).forEach(view => {
-    view.classList.remove("active");
-  });
-
-  views[viewName].classList.add("active");
-  $("#screen").dataset.view = viewName;
-}
-
-function renderConversations() {
-  const list = $("#conversationList");
-  list.innerHTML = "";
-
-  people.forEach(person => {
-    const row = document.createElement("button");
-    row.className = "conversation";
-
-    row.innerHTML = `
-      <span class="avatar ${person.color}">
-        ${person.initial}
-      </span>
-
-      <span class="conversation-copy">
-        <span class="conversation-top">
-          <span class="conversation-name"></span>
-          <span class="conversation-time"></span>
-        </span>
-        <span class="conversation-preview"></span>
-      </span>
-    `;
-
-    // Use textContent for contact information.
-    row.querySelector(".conversation-name").textContent =
-      person.name;
-
-    row.querySelector(".conversation-time").textContent =
-      person.time;
-
-    row.querySelector(".conversation-preview").textContent =
-      person.preview;
-
-    row.addEventListener("click", () => openChat(person));
-
-    list.appendChild(row);
-  });
-}
-
-function openChat(person) {
-  activePerson = person;
-
-  $("#contactName").textContent = person.name;
-  $("#contactAvatar").textContent = person.initial;
-  $("#contactAvatar").className =
-    "contact-avatar " + person.color;
-
-  $("#chatMessages").innerHTML = "";
-
-  person.messages.forEach(message => {
-    addBubble(message[0], message[1], false);
-  });
-
-  showView("chat");
-  scrollChat();
-}
-
-function addBubble(direction, message, shouldScroll = true) {
-  const row = document.createElement("div");
-  row.className =
-    "bubble-row " +
-    (direction === "out" ? "outgoing" : "incoming");
-
-  const bubble = document.createElement("div");
-  bubble.className = "bubble";
-  bubble.textContent = message;
-
-  row.appendChild(bubble);
-  $("#chatMessages").appendChild(row);
-
-  if (shouldScroll) {
-    scrollChat();
-  }
-}
-
-function scrollChat() {
-  const chat = $("#chatMessages");
-  chat.scrollTop = chat.scrollHeight;
+  [to, from].forEach(v => { v.style.transformOrigin = origin; v.style.overflow = "hidden"; v.style.zIndex = v === top ? 2 : 1; });
+  cleanup = () => {
+    anims.forEach(a => a.cancel());
+    from.classList.remove("active");
+    [to, from].forEach(v => { v.style.transformOrigin = v.style.overflow = v.style.zIndex = ""; });
+    cleanup = null;
+  };
+  Promise.all(anims.map(a => a.finished)).then(() => { if (cleanup) cleanup(); }).catch(() => {});
+  if (name === "lock") playNotification();
 }
 
 // Open apps from the Home Screen.
 document.querySelectorAll("[data-app]").forEach(button => {
   button.addEventListener("click", () => {
     const app = button.dataset.app;
+    setOrigin(button);
 
     if (app === "Kakao") {
       renderKakaoList();
@@ -191,13 +171,7 @@ document.querySelectorAll("[data-app]").forEach(button => {
       return;
     }
 
-    if (app === "Messages") {
-      renderConversations();
-      showView("messages");
-      return;
-    }
-
-    openOtherApp(app);
+    // every other app is switched off for now: nothing happens when you tap it
   });
 });
 
@@ -208,135 +182,6 @@ document.querySelectorAll("[data-back]").forEach(button => {
   });
 });
 
-// Make the other app icons interactive too.
-function openOtherApp(app) {
-  $("#otherTitle").textContent = app;
-
-  const content = $("#otherContent");
-  content.innerHTML = "";
-
-  const card = document.createElement("div");
-  card.className = "demo-card";
-
-  const title = document.createElement("h3");
-  title.textContent = app;
-
-  const description = document.createElement("p");
-
-  const descriptions = {
-    Instagram:
-      "Your fictional feed. Add posts, captions, likes, and comments here.",
-    Photos:
-      "Your camera roll, screenshots, and character memories.",
-    Notes:
-      "Things to remember: reply to Chan, finish the chapter, buy iced coffee.",
-    Calendar:
-      "Wednesday, October 28. No events today. For once, breathe.",
-    Clock:
-      "World Clock · Manila",
-    Weather:
-      "Cloudy · 28°C",
-    Settings:
-      "Apple Account · Wi-Fi · Bluetooth · Wallpaper",
-    Phone:
-      "Favourites · Chan · Recent calls",
-    Safari:
-      "Your fictional browser start page."
-  };
-
-  description.textContent =
-    descriptions[app] || "This app is a work in progress.";
-
-  card.append(title, description);
-  content.appendChild(card);
-
-  showView("other");
-}
-
-// Show the send button only when text is entered.
-$("#messageInput").addEventListener("input", () => {
-  const hasText = $("#messageInput").value.trim().length > 0;
-
-  $(".send-button").classList.toggle("visible", hasText);
-});
-
-// Send a message.
-$("#messageForm").addEventListener("submit", event => {
-  event.preventDefault();
-
-  const input = $("#messageInput");
-  const message = input.value.trim();
-
-  if (!message) return;
-
-  addBubble("out", message);
-
-  activePerson.messages.push(["out", message]);
-  activePerson.preview = "you: " + message;
-  activePerson.time = "now";
-
-  input.value = "";
-  $(".send-button").classList.remove("visible");
-
-  renderConversations();
-
-  // Demo reply, not a real AI or another person's phone.
-  const currentPerson = activePerson;
-
-  setTimeout(() => {
-    if (activePerson !== currentPerson) return;
-
-    let reply = "HAHAHA okay, noted.";
-
-    if (/^(hi|hello|hey)\b/i.test(message)) {
-      reply = "hi 😭 what's up?";
-    } else if (/good night/i.test(message)) {
-      reply = "good night. text me when you wake up :)";
-    } else if (/\?$/.test(message)) {
-      reply = "hmm, let me think about that.";
-    }
-
-    addBubble("in", reply);
-
-    currentPerson.messages.push(["in", reply]);
-    currentPerson.preview = reply;
-    currentPerson.time = "now";
-
-    renderConversations();
-  }, 900);
-});
-
-// Create a new conversation.
-// Create a new KakaoTalk conversation.
-$("#messagesComposeButton").addEventListener("click", () => {
-  const name = prompt("Enter your character's name:");
-
-  if (!name || !name.trim()) return;
-
-  const cleanName = name.trim();
-
-  const chat = {
-    name: cleanName,
-    initial: cleanName.charAt(0).toUpperCase(),
-    color: "#9a8fe0",
-    unread: 0,
-    history: [["in", "hey!", "now"]],
-    script: []
-  };
-
-  KAKAO.unshift(chat);
-  renderKakaoList();
-  openKakao(chat);
-});
-
-// Display the current time in the status bar.
-// ---------- STORY SETTINGS (edit these!) ----------
-const STORY = {
-  time: "12:26",                  // fixed story time; use "" to show the real time
-  date: "Wednesday, 28 October",
-  passcode: "021199"
-};
-
 function updateTime() {
   const real = new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit", hour12: false });
   const t = STORY.time || real;
@@ -346,7 +191,6 @@ function updateTime() {
 }
 
 updateTime();
-renderConversations();
 
 // ---------- LOCK SCREEN: swipe up (or tap) to open ----------
 let startY = null;
@@ -418,29 +262,6 @@ document.addEventListener("keydown", e => {   // typing on a real keyboard works
 });
 
 // ---------- KAKAOTALK ----------
-// "history" = messages already in the chat. "script" = what happens next, in order:
-// ["in", text, time] arrives by itself, ["out", text, time] is YOUR reply (typed on the fake keyboard).
-const KAKAO = [
-  { name: "Chan", initial: "C", color: "#8aa4d6", unread: 2,
-    history: [
-      ["in", "hey, are you free later?", "9:58 AM"],
-      ["out", "maybe. why?", "10:02 AM"],
-      ["in", "i don't remember much about last night", "10:40 AM"],
-      ["in", "if i said something strange, please tell me", "10:40 AM"]
-    ],
-    script: [
-      ["out", "it wasn't a strange thing to say.", "10:42 AM"],
-      ["in", "...really?", "10:43 AM"],
-      ["in", "okay. thank you for telling me", "10:43 AM"],
-      ["out", "anytime.", "10:44 AM"]
-    ] },
-  { name: "Wonwoo", initial: "W", color: "#e8a0b4", unread: 1,
-    history: [["in", "don't forget to eat, okay?", "11:42 PM"]], script: [] },
-  { name: "The Problem Children", initial: "✦", color: "#9a8fe0", unread: 36,
-    history: [["in", "WHO SENT THAT SCREENSHOT", "9:36 PM"]], script: [] },
-  { name: "Mika", initial: "M", color: "#f2b36d", unread: 3,
-    history: [["in", "send me the pictures pls!!", "5:41 PM"]], script: [] }
-];
 
 const wait = ms => new Promise(r => setTimeout(r, ms));
 const el = (tag, cls, text) => {
@@ -453,51 +274,48 @@ let kChat = null, kTyped = 0;
 
 function kBadges() {
   const total = KAKAO.reduce((n, c) => n + c.unread, 0);
-
-  const badge = $(".kakao-icon .badge");
-  if (badge) {
-    badge.textContent = total;
-    badge.style.display = total ? "" : "none";
-  }
-
-  const unreadTotal = $("#kUnreadTotal");
-  if (unreadTotal) {
-    unreadTotal.textContent = total;
-  }
-
-  const backCount = $("#kBackCount");
-  if (backCount) {
-    backCount.textContent = total;
-  }
+  const set = (sel, fn) => { const e = $(sel); if (e) fn(e); };
+  set(".kakao-icon .badge", e => { e.textContent = total; e.style.display = total ? "" : "none"; });
+  set("#kTabBadge", e => { e.textContent = total; e.style.display = total ? "" : "none"; });
+  set("#kUnreadTotal", e => { e.textContent = total; });
+  set("#kBackCount", e => { e.textContent = total; });
 }
+
+let kFilter = "all";
 
 function renderKakaoList() {
   const box = $("#kRows");
   box.innerHTML = "";
-  KAKAO.forEach(c => {
+  KAKAO.filter(c => kFilter === "all" || c.unread > 0).forEach(c => {
     const last = c.history[c.history.length - 1];
     const row = el("button", "k-chatrow");
     row.type = "button";
     const av = el("span", "k-av", c.initial);
     av.style.background = c.color;
     const mid = el("span", "k-mid");
-    mid.append(el("span", "k-nm", c.name), el("span", "k-pv", last[1]));
-    
+    const top = el("span", "k-top");
+    top.appendChild(el("span", "k-nm", c.name));
+    if (c.members) top.appendChild(el("span", "k-mem", c.members));
+    mid.append(top, el("span", "k-pv", last[1]));
     const side = el("span", "k-side");
-    side.append(el("span", "k-time", last[2] || ""));
-    
-      if (c.unread) {
-        side.append(el("span", "k-un", c.unread));
-      }
-
-      side.append(el("span", "k-star", "☆"));
-    
+    side.appendChild(el("span", "k-tm", last[2] || ""));
+    if (c.unread) side.appendChild(el("span", "k-un", c.unread));
     row.append(av, mid, side);
     row.addEventListener("click", () => openKakao(c));
     box.appendChild(row);
   });
+  if (!box.children.length) box.appendChild(el("div", "k-empty", "No unread chats"));
   kBadges();
 }
+
+function setKFilter(f) {
+  kFilter = f;
+  $("#kAll").classList.toggle("on", f === "all");
+  $("#kUnread").classList.toggle("on", f === "unread");
+  renderKakaoList();
+}
+$("#kAll").addEventListener("click", () => setKFilter("all"));
+$("#kUnread").addEventListener("click", () => setKFilter("unread"));
 
 $("#kakaoComposeButton").addEventListener("click", () => {
   const name = prompt("Enter your character's name:");
@@ -629,29 +447,36 @@ $("#kBack").addEventListener("click", renderKakaoList);
 renderKakaoList();
 
 // ---------- PHOTOS (GALLERY) ----------
-// Put your pictures in the images/ folder, then list them here (newest first).
-const GALLERY = [
-  { src: "images/wallpaper-1.jpg", date: "Wednesday, October 28" },
-  { src: "images/wallpaper1.jpg", date: "Sunday, October 4" },
-  // { src: "images/my-photo.jpg", date: "Friday, October 2" },
-];
+
+function dayLabel(iso) {                       // "2026-10-28" -> "Wednesday, 28 October"
+  const [y, m, d] = iso.split("-").map(Number);
+  const dt = new Date(y, m - 1, d);
+  const wd = dt.toLocaleDateString("en-US", { weekday: "long" });
+  const md = dt.toLocaleDateString("en-GB", { day: "numeric", month: "long" });
+  return wd + ", " + md + (y !== 2026 ? " " + y : "");
+}
 
 function renderGallery() {
   const grid = $("#gGrid");
   grid.innerHTML = "";
-  GALLERY.forEach(p => {
-    const cell = el("button", "g-cell");
-    cell.type = "button";
-    const img = el("img");
-    img.src = p.src;
-    img.alt = "";
-    cell.appendChild(img);
-    cell.addEventListener("click", () => {
-      $("#gImg").src = p.src;
-      $("#gDate").textContent = p.date;
-      showView("photo");
+  [...new Set(GALLERY.map(p => p.date))].sort().reverse().forEach(date => {
+    grid.appendChild(el("div", "g-day", dayLabel(date)));
+    GALLERY.filter(p => p.date === date).forEach(p => {
+      const cell = el("button", "g-cell");
+      cell.type = "button";
+      const img = el("img");
+      img.src = p.src;
+      img.alt = "";
+      img.onerror = () => cell.classList.add("missing");   // wrong file name -> grey square
+      cell.appendChild(img);
+      cell.addEventListener("click", () => {
+        if (cell.classList.contains("missing")) return;
+        $("#gImg").src = p.src;
+        $("#gDate").textContent = dayLabel(p.date);
+        showView("photo");
+      });
+      grid.appendChild(cell);
     });
-    grid.appendChild(cell);
   });
   grid.appendChild(el("div", "g-count", GALLERY.length + " Photos"));
 }
@@ -660,3 +485,13 @@ function renderGallery() {
 document.querySelectorAll(".dark-indicator").forEach(bar => {
   bar.addEventListener("click", () => showView("home"));
 });
+
+function playNotification() {                 // notifications slide in one after the other
+  document.querySelectorAll(".notification").forEach((n, i) => {
+    n.classList.remove("in");
+    n.style.setProperty("--delay", (0.6 + i * 0.3) + "s");
+    void n.offsetWidth;
+    n.classList.add("in");
+  });
+}
+playNotification();
